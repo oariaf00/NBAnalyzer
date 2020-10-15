@@ -29,32 +29,92 @@
         <br />
         Bienvenido a NBAnalyzer, la aplicación donde podrás encontrar el jugador
         que necesitas. Nuestro sistema de recomendación basado en los parámetros
-        indicados te ofrecerá una serie de opciones que se adecúen a los mismos
+        indicados te ofrecerá una serie de opciones que se adecúen a los mismos.
         <br />
         <strong>PARÁMETROS DE BÚSQUEDA:</strong>
         <br />
         <br />
-        <div id="posiciones" style="float:left;">
+        <!-- div para el radiobutton de la posición -->
+        <div id="posiciones" style="float:left; margin-right: 100px">
           <div><strong>POSICIÓN</strong></div>
           <v-radio-group v-model="jugador.posicion">
             <v-radio v-for="pos in posiciones" :key="pos" :label="`${pos}`" :value="pos"></v-radio>
           </v-radio-group>
         </div>
-        <div id="edad" style="float:right; margin-right: 500px">
+        <!-- div para el textfield de la edad -->
+        <div id="edad" style="float:left; margin-right: 50px">
           <div><strong>EDAD</strong></div>
-          <v-text-field v-model="jugador.edad" :rules="rules" outlined ></v-text-field>
+          <v-text-field v-model="jugador.edad" label="Ej. 27" :rules="rules" outlined ></v-text-field>
         </div>
+        <!-- div para el textfield del porcentaje de tiros de campo -->
+        <div id="fg" style="float:left; margin-right: 50px">
+          <div><strong>% TIROS DE CAMPO</strong></div>
+          <v-text-field v-model="jugador.fg" label="Ej. 39" :rules="rules" outlined ></v-text-field>
+        </div>
+        <!-- div para el textfield del porcentaje de tiros de 3 -->
+        <div id="threep" style="float:left; margin-right: 50px">
+          <div><strong>% TIROS DE 3 PUNTOS</strong></div>
+          <v-text-field v-model="jugador.threep" label="Ej. 34" :rules="rules" outlined ></v-text-field>
+        </div>
+        <!-- div para el textfield del porcentaje de tiros libres -->
+        <div id="ft" style="float:left; margin-right: 50px">
+          <div><strong>% TIROS LIBRES</strong></div>
+          <v-text-field v-model="jugador.ft" label="Ej. 87" :rules="rules" outlined ></v-text-field>
+        </div>
+        <!-- div para el textfield de la media de puntos por partido-->
+        <div id="ft" style="float:left; margin-right: 50px">
+          <div><strong>PUNTOS POR PARTIDO</strong></div>
+          <v-text-field v-model="jugador.puntos" label="Ej. 16,5" :rules="rules" outlined ></v-text-field>
+        </div>
+        <!-- div para el textfieldde la media de rebotes por partido-->
+        <div id="ft" style="float:left; margin-right: 50px">
+          <div><strong>REBOTES POR PARTIDO</strong></div>
+          <v-text-field v-model="jugador.rebotes" label="Ej. 4,7" :rules="rules" outlined ></v-text-field>
+        </div>
+        <!-- div para el textfield de la media de asistencias por partido -->
+        <div id="ft" style="float:left; margin-right: 50px">
+          <div><strong>ASISTENCIAS POR PARTIDO</strong></div>
+          <v-text-field v-model="jugador.asistencias" label="Ej. 8,5" :rules="rules" outlined ></v-text-field>
+        </div>
+        <!-- div para el textfield del salario -->
+        <div id="ft" style="float:left; margin-right: 50px">
+          <div><strong>SALARIO ANUAL</strong></div>
+          <v-text-field v-model="jugador.salario" label="Ej. 15.000.000" :rules="rules" outlined ></v-text-field>
+        </div>
+
+        <div id="botonBuscarJugador">
+          <v-btn rounded color="primary" dark style="float:left; margin-right: 50px">
+            BUSCAR JUGADORES
+          </v-btn>
+        </div>
+      </div>
+
+      <div id="recomendaciones" style="float:left; margin-left: 50px; margin-right: 50px; margin-top: 50px">
+        <br />
+        O si no tienes claro lo que buscas, podemos ofrecerte algunos jugadores en función de su
+        estilo de juego:
+        <br />
+
+        <!-- Botón para escoger tipo de jugador -->
+        <v-row align="center">
+          <v-col cols="12">
+            <v-select v-model="estilo" :items="items" :menu-props="{ top: true, offsetY: true }" label="Escoge uno de las siguientes opciones"></v-select>
+          </v-col>
+        </v-row>
       </div>
     </div>
 
-    <v-footer dark padless>
+    <div id="botonRecomendarJugador" class="text-center" style="margin-bottom: 50px">
+      <v-btn rounded color="primary" dark >RECOMENDAR JUGADORES</v-btn>
+    </div>
+    
+
+    <div id="piePagina" >
+      <v-footer dark padless >
       <v-card class="flex" flat tile>
         <v-card-title class="teal">
-          <strong class="subheading"
-            >¡Repórtanos con errores o posibles mejoras del sistema!</strong
-          >
+          <strong class="subheading">¡Repórtanos con errores o posibles mejoras del sistema!</strong>
           <v-spacer></v-spacer>
-
           <v-btn href="https://www.linkedin.com/in/omar-arias-fern%C3%A1ndez-7a71871b7/" target="_blank" :key="icon" class="mx-4" dark icon>
             <v-icon size="24px">mdi-message</v-icon>
           </v-btn>
@@ -79,7 +139,10 @@
                   introducir los parámetros sobre el jugador que está buscando
                   para que el programa comience a contrastar con la base de
                   datos para darle las mejores opciones que haya en el mercado
-                  de jugadores de la NBA
+                  de jugadores de la NBA.<br>
+                  En la parte inferior disponemos de un sistema de búsqueda de jugadores
+                  en función de su estilo de juego, para los que no tienen un perfil claro
+                  de jugador a buscar
                 </div>
               </v-sheet>
             </v-bottom-sheet>
@@ -87,6 +150,7 @@
         </v-card-text>
       </v-card>
     </v-footer>
+    </div>
   </v-app>
 </template>
 
@@ -101,7 +165,22 @@ export default {
   data: () => ({
     posiciones: ["Base", "Escolta", "Alero", "Ala-pívot", "Pívot"],
     sheet: false,
-    jugador: ["nombre", "edad", "posicion", "equipo" ,"salario", "puntos", "rebotes", "asistencias" , "robos" ,"%fg", "%ft", "%3p", ],
+    //Objeto jugador para almacenar los datos y pasárselos a la base de datos como parámetro
+    jugador: {
+      nombre: '',
+      edad: undefined,
+      posicion: '',
+      equipo:'',
+      salario: '',
+      puntos: undefined,
+      rebotes: undefined,
+      asistencias: undefined,
+      fg: undefined,
+      ft: undefined,
+      threep: undefined,
+    },
+    items: ['Jugador defensivo', 'Playmaker', 'Jugador ofensivo', '3-And-D'],
+    estilo:"",
   }),
 };
 </script>
