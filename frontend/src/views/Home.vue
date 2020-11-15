@@ -24,6 +24,7 @@
       </v-app-bar>
     </div>
 
+    <!-- Div con todos los elementos de la búsqueda -->
     <div style="background-color: #ffffff">
       <div text-align="center" style="margin-left: 50px; margin-right: 50px">
         <br />
@@ -66,7 +67,7 @@
           <div><strong>PUNTOS POR PARTIDO</strong></div>
           <v-text-field v-model="jugador.puntos" label="Ej. 16,5" :rules="rules" outlined ></v-text-field>
         </div>
-        <!-- div para el textfieldde la media de rebotes por partido-->
+        <!-- div para el textfield de la media de rebotes por partido-->
         <div id="ft" style="float:left; margin-right: 50px">
           <div><strong>REBOTES POR PARTIDO</strong></div>
           <v-text-field v-model="jugador.rebotes" label="Ej. 4,7" :rules="rules" outlined ></v-text-field>
@@ -76,16 +77,9 @@
           <div><strong>ASISTENCIAS POR PARTIDO</strong></div>
           <v-text-field v-model="jugador.asistencias" label="Ej. 8,5" :rules="rules" outlined ></v-text-field>
         </div>
-        <!-- div para el textfield del salario -->
-        <div id="ft" style="float:left; margin-right: 50px">
-          <div><strong>SALARIO ANUAL</strong></div>
-          <v-text-field v-model="jugador.salario" label="Ej. 15.000.000" :rules="rules" outlined ></v-text-field>
-        </div>
 
-        <div id="botonBuscarJugador">
-          <v-btn rounded color="primary" dark style="float:left; margin-right: 50px">
-            BUSCAR JUGADORES
-          </v-btn>
+        <div id="botonBuscarJugador" class="text-center" style="float:left">
+          <v-btn rounded color="primary" v-on:click= "buscarJugadores()"> BUSCAR JUGADORES </v-btn>
         </div>
       </div>
 
@@ -96,19 +90,33 @@
         <br />
 
         <!-- Botón para escoger tipo de jugador -->
-        <v-row align="center">
+        <v-row align="center" style="float:left; width:50%; padding-right:40px">
           <v-col cols="12">
             <v-select v-model="estilo" :items="items" :menu-props="{ top: true, offsetY: true }" label="Escoge uno de las siguientes opciones"></v-select>
           </v-col>
         </v-row>
+
+        <!-- Botón para escoger el numero de jugadores a mostrar -->
+        <v-row align="center" style="float:left; width:50%">
+          <v-col cols="12">
+            <v-select v-model="numJugadores" :items="top" :menu-props="{ top: true, offsetY: true }" label="Escoge el número de jugadores a mostrar"></v-select>
+          </v-col>
+        </v-row>
+
+        <!-- Boton para comenzar la búsqueda -->
+        <v-row align="center" style="float:left; width: 50%">
+          <v-col cols="12">
+            <v-btn rounded color="primary" dark >RECOMENDAR JUGADORES</v-btn>
+          </v-col>
+          
+        </v-row>
+
+        <!-- Finaliza el div de las recomendaciones -->
       </div>
+        <!-- Finaliza el div de los elementos de busqueda -->
     </div>
 
-    <div id="botonRecomendarJugador" class="text-center" style="margin-bottom: 50px">
-      <v-btn rounded color="primary" dark >RECOMENDAR JUGADORES</v-btn>
-    </div>
-    
-
+    <!-- Pie de pagina -->
     <div id="piePagina" >
       <v-footer dark padless >
       <v-card class="flex" flat tile>
@@ -155,9 +163,12 @@
 </template>
 
 <script>
+const Swal = require('sweetalert2')
 // @ is an alias to /src
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
+import swal from 'sweetalert2';
+window.Swal = swal;
 
 Vue.use(Vuetify);
 
@@ -174,13 +185,39 @@ export default {
       salario: '',
       puntos: undefined,
       rebotes: undefined,
+      rebotesOfensivos: undefined,
+      rebotesDefensivos: undefined,
+      robos: undefined,
+      perdidas: undefined,
       asistencias: undefined,
       fg: undefined,
       ft: undefined,
       threep: undefined,
     },
     items: ['Jugador defensivo', 'Playmaker', 'Jugador ofensivo', '3-And-D'],
+    top: ['Top 3', 'Top 10', 'Top 15'],
     estilo:"",
+    numJugadores: 0,
+    rules: undefined,
+    icon: undefined
   }),
+  methods:{
+        buscarJugadores(){
+            //Comprobamos que haya introducido algun valor en todos los parámetros de búsqueda
+            console.log("Pulsamos el boton de buscar jugadores");
+            if(this.jugador.posicion == ''){
+                //Mensaje de error
+                Swal.fire({
+                  title: '  ¡BÚSQUEDA INCOMPLETA!',
+                  text: 'Debes introducir todos los parámetros del jugador a buscar',
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+                })
+            }else{
+                //Redireccionamos a pisos
+                this.$router.push('/Players');
+            }
+        }
+    }
 };
 </script>
