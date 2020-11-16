@@ -23,7 +23,15 @@
         </v-btn>
       </v-app-bar>
     </div>
+    <br>
+    <div id="botonBuscarJugador" class="text-center" style="float:left">
+      <v-btn rounded color="primary" v-on:click= "volverAlInicio()"> VOLVER A LA PÁGINA PRINCIPAL </v-btn>
+    </div>
+    <br>
 
+    <div>
+      <v-data-table :headers="headers" :items="jugadores" :items-per-page="15" class="elevation-1"></v-data-table>
+    </div>
 
     <!-- Pie de pagina -->
     <div id="piePagina" >
@@ -72,18 +80,115 @@
 </template>
 
 <script>
-const Swal = require('sweetalert2')
 // @ is an alias to /src
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
-import swal from 'sweetalert2';
-window.Swal = swal;
+const axios= require("axios");
 
 Vue.use(Vuetify);
 
 export default {
   data: () => ({
-    posiciones: ["Base", "Escolta", "Alero", "Ala-pívot", "Pívot"],
+    headers: [
+        {
+          text: 'Nombre',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: 'Edad',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'POS',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'Equipo',
+          align: 'start',
+          sortable: false,
+          value: 'fat'
+        },
+        {
+          text: 'SALARY ($)',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'PPG',
+          align: 'start',
+          sortable: false,
+          value: 'carbs'
+        },
+        {
+          text: 'RPG',
+          align: 'start',
+          sortable: false,
+          value: 'protein'
+        },
+        {
+          text: 'ORB',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'DRB',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'SPG',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'TPG',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'APG',
+          align: 'start',
+          sortable: false,
+          value: 'iron'
+        },
+        {
+          text: 'FG%',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'FT%',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: '3P%',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        {
+          text: 'FPG',
+          align: 'start',
+          sortable: false,
+          value: 'calories'
+        },
+        
+
+    ],
+    jugadores:[],
     sheet: false,
     //Objeto jugador para almacenar los datos y pasárselos a la base de datos como parámetro
     jugador: {
@@ -102,6 +207,7 @@ export default {
       fg: undefined,
       ft: undefined,
       threep: undefined,
+      faltas: undefined
     },
     items: ['Jugador defensivo', 'Playmaker', 'Jugador ofensivo', '3-And-D'],
     top: ['Top 3', 'Top 10', 'Top 15'],
@@ -110,23 +216,51 @@ export default {
     rules: undefined,
     icon: undefined
   }),
-  methods:{
-        buscarJugadores(){
-            //Comprobamos que haya introducido algun valor en todos los parámetros de búsqueda
-            console.log("Pulsamos el boton de buscar jugadores");
-            if(this.jugador.posicion == ''){
-                //Mensaje de error
-                Swal.fire({
-                  title: '  ¡BÚSQUEDA INCOMPLETA!',
-                  text: 'Debes introducir todos los parámetros del jugador a buscar',
-                  icon: 'error',
-                  confirmButtonText: 'Aceptar'
-                })
-            }else{
-                //Redireccionamos a pisos
-                this.$router.push('/Players');
-            }
+    mounted(){
+      axios.get('http://localhost:3000/lookPlayers',{
+        params:{
+          edad: this.$store.state.jugador.edad,
+          posicion: this.$store.state.jugador.posicion,
+          fg: this.$store.state.jugador.fg,
+          threep: this.$store.state.jugador.threep,
+          ft: this.$store.state.jugador.ft,
+          puntos: this.$store.state.jugador.puntos,
+          rebotes: this.$store.state.jugador.rebotes,
+          asistencias: this.$store.state.jugador.asistencias
         }
+      }).then(response=>{
+        console.log("Se ha resuelto correctamente la query de /Players: "+response.data)
+        //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
+        //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
+        for (var step = 0; step < response.data.length; step+=16) {
+            //Aqui añadimos los elementos a la variable jugador y luego al array
+            this.jugador.nombre = response.data[step]
+            this.jugador.edad = response.data[step+1]
+            this.jugador.posicion = response.data[step+2]
+            this.jugador.equipo = response.data[step+3]
+            this.jugador.salario = response.data[step+4]
+            this.jugador.puntos = response.data[step+5]
+            this.jugador.rebotes = response.data[step+6]
+            this.jugador.rebotesOfensivos = response.data[step+7]
+            this.jugador.rebotesDefensivos = response.data[step+8]
+            this.jugador.robos = response.data[step+9]
+            this.jugador.perdidas = response.data[step+10]
+            this.jugador.asistencias = response.data[step+11]
+            this.jugador.fg = response.data[step+12]
+            this.jugador.ft = response.data[step+13]
+            this.jugador.threep = response.data[step+14]
+            this.jugador.faltas = response.data[step+15]
+            console.log(this.jugador)
+            this.jugadores.push(this.jugador);
+        }
+      }).catch((e) => {
+              console.log(e.message);
+      });
+    },
+    methods:{
+      volverAlInicio(){
+        this.$router.push("/");
+      }
     }
 };
 </script>

@@ -1,0 +1,364 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    /* margin: 0; */    
+}
+
+body {
+    margin: 0;
+    margin-top: 0 !important;
+    background: #ffffff !important;
+}
+
+.menu {
+    background-color: white;
+    height: 49px;
+}
+
+
+/*Imagenes del Slider*/
+
+section {
+    display: flex;
+    height: 94vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.portada {
+    position: relative;
+    width: 100%;
+    height: 94vh;
+}
+
+.portada::after {
+    content: "";
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0.2;
+}
+
+.portada .imag {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*Idioma*/
+
+.idioma {
+    width: 120px;
+    border: solid white;
+    font-size: 18px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+
+/*Registrar piso*/
+
+.registrar1 {
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    padding: 10px 16px;
+    /* left: 500px; */
+    right: 650px;
+    font-size: 18px;
+    height: 50px;
+    border: solid 1px #064ACB;
+    background-color: #064ACB;
+    border-radius: 1px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/*Registrar piso*/
+
+.registrar2 {
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    padding: 10px 16px;
+    /* left: 500px; */
+    right: 420px;
+    font-size: 18px;
+    height: 50px;
+    border: solid 1px #064ACB;
+    background-color: #064ACB;
+    border-radius: 1px;
+    color: white;
+    cursor: pointer;
+}
+
+.arrow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 3%;
+    fill: #ffffff;
+    animation: abajo 2.5s infinite;
+}
+
+
+/*Buscador*/
+
+#tituloSeleccionFiltros {
+    position: absolute;
+    top: 30vh;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    z-index: 3;
+}
+
+.seleccionFiltros {
+    display: flex;
+    position: absolute;
+    top: 50vh;
+    width: 100%;
+    /* align-items: center; */
+    justify-content: center;
+    z-index: 3;
+}
+
+.botonesFiltros {
+    width: 150px;
+    height: 50px;
+    background-color: #F48D15;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#pisos {
+    margin-left: 80px;
+}
+
+.buscadorPisos {
+    /* display: none; */
+    position: absolute;
+    top: 100px;
+    right: 120px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px 15px 20px;
+    width: 350px;
+    box-shadow: 0px 0px 35px -9px rgba(0, 0, 0, 0.75);
+    /* transform: translate(90%, 0%); */
+    z-index: 3;
+}
+
+.habitaciones {
+    width: 102px;
+}
+
+input {
+    /* border: solid 1px; */
+    /* border-radius: 2px;
+    padding-left: 5px; */
+    /* width: 80px; */
+}
+
+.buscar {
+    width: 100%;
+    height: 40px;
+    background-color: #366ed8;
+    border: none;
+    color: #ffffff;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/*Flechas pisos*/
+
+.items {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%, 0%);
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    width: 90%;
+    font-size: 30px;
+}
+
+.inputtext {
+    border-radius: 4px;
+    border: #e2e2e2 1px solid;
+    padding: 7px 0px 7px 10px;
+}
+
+
+/* 
+.col-md-4 {
+    -ms-flex: 0 0 33.333333%;
+    -webkit-box-flex: 0;
+    flex: 0 0 33.333333%;
+        flex-grow: 0;
+    max-width: 33.333333%;
+}
+
+.col-6 {
+    -ms-flex: 0 0 50%;
+    -webkit-box-flex: 0;
+    flex: 0 0 50%;
+    max-width: 50%;
+} */
+
+
+/*Responsive*/
+
+
+/*Aparece la imagen*/
+
+div[class^='contenedor-'] {
+    text-align: center;
+}
+
+.contenedor-3 {
+    padding: 90px 80px 150px 80px;
+    background-color: #366ed8;
+    background-image: url("http://localhost/simpleHouse/recursos/Imagenes/slider/banner-ciudad.png");
+    background-repeat: repeat-x;
+    background-size: 400px;
+    background-position: bottom;
+}
+
+.contenedor-5 {
+    color: #ffffff;
+    background-color: rgba(162, 158, 168, 0.2);
+    background-image: url("https://images.unsplash.com/photo-1539651044670-315229da9d2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+}
+
+.contenedor-6 img {
+    width: 150px;
+}
+
+.subcontenedor {
+    padding: 80px;
+    background-color: rgba(162, 158, 168, 0.2);
+}
+
+.bloque {
+    display: inline-block;
+    margin: revert !important;
+}
+
+.bloque img {
+    width: 200px;
+    height: 200px;
+}
+
+.redondo {
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid;
+    padding: 8px;
+}
+
+.tarjeta {
+    width: 70%;
+    display: table;
+    margin: 0 auto;
+    padding: 16px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px -9px rgba(0, 0, 0, 0.75);
+}
+
+#mas-visitados {
+    text-align: left;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+@media screen and ( max-width: 1000px) {
+    .imag {
+        /*Anchura de la pantalla*/
+        width: 100%;
+        /*Altura de la Pantalla*/
+        height: 100vh;
+    }
+}
+
+@media screen and ( max-width: 768px) {
+    .imag {
+        /*Anchura de la pantalla*/
+        width: 100%;
+        /*Altura de la Pantalla*/
+        height: 80vh;
+        object-fit: revert;
+    }
+    .contenedor {
+        top: 80px;
+    }
+    #mas-visitados {
+        text-align: center;
+    }
+}
+
+@media screen and ( max-width: 719px) {
+    .arrow {
+        display: none;
+    }
+    #mas-visitados {
+        text-align: center;
+    }
+}
+
+@media screen and ( max-height: 543px) {
+    .contenedor {
+        position: static;
+        width: 580px;
+    }
+}
+
+@media screen and ( max-width: 500px) {
+    .contenedor {
+        position: static;
+        width: auto;
+        border-bottom: 1px solid #c4c4c4;
+        border-radius: 0px;
+    }
+    .tarjeta {
+        width: 100%;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/*Animacion de la flecha*/
+
+@keyframes abajo {
+    from {
+        top: 89%;
+    }
+    to {
+        top: 91%;
+    }
+}

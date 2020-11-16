@@ -1,0 +1,126 @@
+/*Botones y objetos de la pagina*/
+
+
+/*Botón Naranja pegajoso*/
+
+.boton-add {
+    position: fixed;
+    bottom: 30px;
+    right: 32px;
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 100px;
+    background-color: #366ed8;
+    fill: #ffffff;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.lab {
+    bottom: 500px;
+}
+
+.boton-add:hover {
+    background-color: #064acb;
+}
+
+input.boton-add {
+    display: none;
+}
+
+.opciones {
+    border: none;
+    position: fixed;
+    bottom: 30px;
+    left: 40px;
+    padding: 15px;
+    border-radius: 100px;
+    background-color: #f3a953;
+    transition: transform 0.6s ease;
+    color: #ffffff;
+}
+
+
+/*Fornulario todos los inputs*/
+
+form input {
+    font-size: 1em;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 35px;
+}
+
+
+/*Botón de formulario*/
+
+form input[type=submit] {
+    width: auto;
+    height: 40px;
+    background-color: #366ed8;
+    border: none;
+    color: #ffffff;
+}
+
+form input[type=submit]:hover {
+    background-color: #064acb;
+}
+
+
+/*Selector*/
+
+/* form select {
+    font-size: 1em;
+    width: 30%;
+    height: 70%;
+} */
+
+
+/*Boton*/
+
+.sabermas {
+    width: 40%;
+    height: 40px;
+
+    background-color: #366ed8;
+    border: none;
+    color: #ffffff;
+    font-size: 0.8em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sabermas:hover {
+    background-color: #064acb;
+}
+
+.buttonFav{
+    position: relative;
+    /* top: 550px;
+    left: 20px; */
+    float: right;
+    top: -10px;
+    height: 80px;
+    width: 80px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/*Responsive*/
+
+
+/*@media screen and ( max-width: 610px) {
+    .boton-add {
+        position: fixed;
+        left: 70%;
+    }
+}
+
+@media screen and ( max-height: 543px) {
+    .boton-add {
+        position: fixed;
+        left: 70%;
+    }
+}*/

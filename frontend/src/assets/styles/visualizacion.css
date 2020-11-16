@@ -1,0 +1,318 @@
+ @charset "utf-8";
+ body {
+     margin-left: 0px;
+ }
+ 
+ .estilo_barra {
+     margin: 0px 0px 0px -250px;
+     z-index: 4;
+     position: relative;
+ }
+ 
+ .datos {
+     margin-left: 5px;
+ }
+ 
+ .contenedor-caracteristicas1 {
+     display: flex;
+ }
+
+ .contenedor-caracteristicas-separador {
+	 width: 33%;
+	 text-align: center;
+ }
+ 
+ .contenedor-caracteristicas2 {
+     display: flex;
+     margin-top: 50px;
+     text-align: center;
+ }
+ 
+ .tono-oscuro {
+     width: 60%;
+     height: 80px;
+     background: rgba(0, 0, 0, 0.45);
+     /* position: relative;
+	top: 180px;
+	left: 11.1%; */
+     text-align: center;
+     border-radius: 9px;
+	 margin-left: 19px;
+ }
+ 
+ .precio {
+     font-size: 1.7em;
+     padding: 20px;
+     color: white;
+     font-weight: bolder;
+     font-style: normal;
+     line-height: 80px;
+ }
+ 
+ .contenedor-titulo {
+     /* margin-left: 32px; */
+     width: 100%;
+     /* font-size: 1.5em; */
+     font-weight: bold;
+     font-size: 24px;
+     text-align: center;
+     height: 70px;
+ }
+ 
+ .titulo {
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+ }
+ 
+ .contactar {
+     margin-right: 10%;
+     margin-top: 12px;
+     color: white;
+     font-weight: bold;
+     font-size: 18px;
+     text-align: center;
+     background-color: #366ed8;
+     border: none;
+     border-radius: 5px;
+     width: 70%;
+     height: 57px;
+     /* line-height: 80px; */
+ }
+ 
+ #habitaciones-banos {
+     display: flex;
+     margin-left: auto;
+ }
+ 
+ #habitaciones {
+     display: flex;
+     margin-left: auto;
+ }
+ 
+ #banos {
+     display: flex;
+     margin-left: 100px;
+ }
+ 
+ #metros {
+     display: flex;
+     margin-left: 100px;
+     margin-right: auto;
+ }
+ 
+ #iconos {
+     background-color: #F3A953;
+     position: relative;
+     top: 0px;
+     width: 75px;
+     height: 56px;
+     text-align: center;
+ }
+ 
+ #icono-dato {
+     background: rgba(0, 0, 0, 0.58);
+     width: 120px;
+     height: 56px;
+     color: white;
+     line-height: 56px;
+     text-align: center;
+     font-size: 1.05em;
+ }
+ 
+ .buttonFav {
+     height: 80px;
+     width: 80px;
+     border: none;
+     background: none;
+     cursor: pointer;
+     margin-top: -30px;
+     margin-left: 20px;
+     /* z-index: 4; */
+     /* left: 92%; */
+ }
+ 
+ .contenedor-ubicacion {
+     margin-bottom: 75px;
+ }
+ 
+ #ubicacion {
+     font-weight: bold;
+     margin-top: 29px;
+     /* margin-left: 149px; */
+     font-size: 1em;
+     line-height: 35px;
+	 text-align: center;
+ }
+ 
+ .contenedor-normas {
+     text-align: right;
+ }
+ 
+ .contenedor_apartados {
+     width: 95%;
+     height: 29px;
+     margin-top: 60px;
+     margin-left: 40px;
+     border-bottom: solid 3px #F3A953;
+ }
+ 
+ .descripcion {
+     margin-left: 40px;
+ }
+ 
+ .apartados {
+     border: solid 1px #F3A953;
+     width: 250px;
+     background: #F3A953;
+     color: white;
+     border-radius: 2px;
+     text-align: center;
+     font-weight: bold;
+     /* font-size: 25px; */
+ }
+ 
+ .alinear-der {
+     float: right;
+     margin-top: 0px;
+ }
+ 
+ .contenedor-comodidades {
+     width: 100%;
+     margin-top: 20px;
+     display: flex;
+     /* margin-left: 40px; */
+ }
+ 
+ .comodidades {
+     width: 184px;
+     /* height: 223px; */
+     margin-right: 35px;
+     text-align: center;
+ }
+ 
+ .comodidades img {
+     width: 90px;
+     height: 90px;
+     margin-bottom: 3px;
+ }
+ 
+ .comodidades .cn_name {
+     margin-top: 10px;
+     margin-bottom: 10px;
+     font-size: 18px;
+     text-align: center;
+     font-weight: bolder;
+ }
+ /*Tamaño de pequeño de movile*/
+ 
+ @media screen and (max-width:1024px) {
+	.alinear-der {
+		float: inherit;
+	  }
+	
+	  .estilo_barra {
+		display: none;
+	  }
+	  .contenedor-caracteristicas1 {
+		display: block;
+	  }
+	
+	  .contenedor-caracteristicas-separador{
+		width: 100%;
+	  }
+	
+	  .datos{
+		margin-right: 5px;
+	  }
+	
+	  .tono-oscuro {
+		margin-left: 0px;
+		width: 100%;
+	  }
+	  
+	  .contenedor-titulo {
+		margin-left: 0px;
+		width: auto;
+		height: auto;
+	  }
+	
+	  .titulo { 
+		overflow: visible;
+		white-space: normal;
+		text-overflow: initial;
+	  }
+	
+	  .contactar {
+		margin-left: 0px;
+		width: 100%;
+	  }
+	
+	  .contenedor-caracteristicas2 {
+		display: block;
+	  }
+	
+	  #habitaciones-banos {
+		display: flex;
+		text-align: center
+	  }
+	  
+	  #habitaciones {
+		margin: auto;
+	  }
+	
+	  #banos {
+		margin: auto;
+	  }
+	
+	  #metros {
+		text-align: center;
+		margin: auto;
+		margin-top: 35px;
+	  }
+	
+	  #iconos {
+		margin-left: auto;
+	  }
+	
+	  #icono-dato {
+		margin-right: auto;
+	  }
+	
+	  .buttonFav {
+		width: 100%;
+		text-align: center;
+		margin: 0;
+	  }
+	
+	  #ubicacion {
+		margin-left: 20px;
+	  }
+	
+	  .contenedor_apartados {
+		margin-left: 8px;
+		margin-top: 40px;
+	  }
+	
+	  .descripcion {
+		margin-left: 8px;
+	  }
+	
+	  .contenedor-comodidades {
+		display: inline-block;
+		margin-left: 8px;		/* text-align: center; */
+	  }
+	
+	  .comodidades {
+		display: inline-block;
+		width: auto;
+		margin-right: 25px;
+		margin-left: 10px;
+	  }
+	
+	  .imag {
+		width: 90px;
+		height: 100px;
+	  }
+ }
+ 

@@ -1,0 +1,252 @@
+@charset "utf-8";
+* {
+  font-family: "Poppins", sans-serif !important;
+  /* background-image: url("/SimpleHouse/recursos/Imagenes/Imagenes-Registro/Fondo.png"); */
+ 
+}
+
+/*Dar formato a un titulo para destacar la accion*/
+
+.aumentoTitulo {
+  font-size: 135%;
+  padding-left: 0%;
+  font-family: "Poppins", sans-serif;
+  /* font-style: italic; */
+}
+
+/*Letra y alineacion entre los botones*/
+
+.botones {
+  font-family: "Poppins", sans-serif;
+  font-size: 100%;
+  text-align: center;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 20%;
+  height: 50px;
+  transition-duration: 0.4s;
+  border: solid 2px#f3a953;
+  border-radius: 10px;
+  /* border-bottom: solid 2px #064ACB; */
+  /* background-color: #d6d6d6;
+  border-radius: 50%;
+  border-style: solid dotted;
+  border-radius: 30px;
+  border-color: black; */
+}
+
+input.ciudad {
+  padding-left: 5px;
+  border-radius: 2px;
+  /* font-size: 18px; */
+  width: 120px;
+  font-size: 1em;
+  height: 35px;
+  border: solid 1px;
+}
+
+/*Accion cuando se para por encima de boton*/
+
+.botones:hover {
+  background-color: #f3a953;
+  color: white;
+}
+
+/*Accion para cuando se clica en el boton*/
+
+.botones:active {
+  background-color: #f3a953;
+  border-color: #366ed8;
+}
+
+.error {
+  background-color: red;
+  color: #ffffff;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.recuadroRegistro {
+  text-align: center;
+  /* margin: 0% 10% 0% 15%; */
+  /* border: #366ed8 solid 3px; */
+  border: #616161 solid 2px;
+  border-radius: 30px;
+  width: 600px;
+  margin: auto;
+}
+
+/*Div nombre apartados*/
+
+.contenedor_apartados {
+  border-bottom: solid 3px #366ed8;
+  height: 29px;
+  /* margin-bottom: 20px; */
+}
+
+/*Nombre apartados*/
+
+.apartados {
+  border: solid 1px#366ed8;
+  width: 250px;
+  background: #366ed8;
+  color: white;
+  border-radius: 2px;
+  text-align: center;
+  height: 29px;
+}
+
+/*Recuadro con el nombre del campo a rellenar*/
+
+.recuadro {
+  /* border: #366ed8 4px solid; */
+  /* border-radius: 30px; */
+  /* background: #366ed81c; */
+  /* border-style: solid none; */
+  box-shadow: 0px 10px 20px 1px rgba(0, 0, 0, 0.75);
+  border: none;
+  margin: 0px;
+}
+
+/*inputs registro*/
+
+input {
+  border: none;
+  border-bottom: solid 2px #f3a953;
+  background: transparent;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+input:focus {
+  border: solid 2px #f80;
+}
+
+/*text area*/
+textarea {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+/*Labels registro*/
+
+label {
+  font-size: 1.2em;
+}
+
+.separador {
+  margin: 10% 0% 15% 2%;
+}
+
+/*Contenedor para maquetar registroPisos1*/
+
+.contenedores {
+  display: flex;
+  padding-left: 2%;
+  padding-top: 2%;
+  font-family: "Poppins", sans-serif;
+  margin: 0% 0% 0% 0%;
+}
+
+/*Estilo imagenes registroPisos1*/
+
+.imagenes {
+  font-family: "Poppins", sans-serif;
+  margin: -1% 0% 0% 10%;
+}
+
+/*Estilo para la información de los contenedores de registroPisos1*/
+
+.informacion {
+  font-family: "Poppins", sans-serif;
+  margin: 0% 0% 0% 2%;
+}
+
+.banyos {
+  margin-left: 240px;
+}
+
+.metros {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.correo {
+  margin-left: 325px;
+}
+
+.etiqueta {
+  margin-bottom: 12px;
+}
+
+/*
+Tamaño de mediano tablet
+*/
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body {
+    font-size: 0.75em;
+  }
+  .imagenes img {
+    width: 70%;
+    height: 100%;
+  }
+  .contenedores2 {
+    display: block;
+    margin: 5% 0% 5% 2%;
+  }
+  .banyos, .correo {
+    display: static;
+    margin: 5% 0% 5% 2%;
+  }
+}
+
+/*
+Tamaño de pequeño de movil
+*/
+
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 0.75em;
+  }
+  .imagenes {
+    display: none;
+  }
+  .contenedores {
+    display: block;
+    margin: 5% 0% 5% 0%;
+  }
+  .contenedor-titulo {
+    display: block;
+    margin: 0% 0% 4% 0%;
+  }
+  .banyos, .correo {
+    display: static;
+    margin: 0;
+  }
+  .informacion {
+    width: 100%;
+    margin-left: 0;
+  }
+  .metros {
+    display: block;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  .recuadro {
+    width: 95%;
+  }
+  .etiqueta {
+    margin-top: 2%;
+    margin-bottom: 3%;
+  }
+  input {
+    width: 90%;
+  }
+  
+  label {
+    font-size: 1em !important;
+  }
+
+}

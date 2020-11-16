@@ -1,0 +1,228 @@
+* {
+    /* margin: 0% 0% 0% 0%; */
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+
+/*Fondo y sombra del menu*/
+
+.menu {
+    background: white;
+    height: 50px;
+    top: 0px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    box-shadow: 0px 0px 35px 1px rgba(0, 0, 0, 0.75);
+}
+
+header {
+    color: white;
+}
+
+
+/*Contenedor con fondo*/
+
+.informacion-perfil {
+    margin-top: 55px;
+}
+
+.campos {
+    margin-left: 5%;
+    border: none;
+    font-size: 20px;
+    color: black;
+}
+
+.infor {
+    margin-left: 10%;
+}
+
+
+/*Contenedor para imagen de usuario*/
+
+.imagen-usuario {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: -40px;
+}
+
+
+/*Icono usuario*/
+
+.icono {
+    /* float: left; */
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+    border-style: groove;
+    border: solid;
+    border-color: rgb(60, 60, 60);
+    border-radius: 100px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+/*Editar contraseña*/
+
+.password {
+    font-size: 20px;
+    height: 40px;
+    border-radius: 3px;
+    /* border: solid 2px #064acb; */
+    border: none;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.password:hover {
+    background-color: #064acb;
+    color: white;
+}
+
+
+/*Boton para editar el piso*/
+
+.buttonInfo {
+    height: 80px;
+    width: 80px;
+    border: none;
+    background: none;
+    margin-top: -300px;
+    margin-right: 130px;
+    float: right;
+    cursor: pointer;
+}
+
+.buttonInfo:hover {
+    transform: scale(1.15);
+}
+
+.vinculo2 {
+    color: #F3A953;
+    text-decoration: none;
+}
+
+
+/*Boton eliminar*/
+
+.contenedor-boton-eliminar {
+    text-align: center;
+    height: 50px;
+    margin-bottom: 70px;
+}
+
+.botonEliminar {
+    /* width: 100px; */
+    height: 50px;
+    font-size: 20px;
+    /* float: right; */
+    /* margin-right: 20px; */
+    background-color: #f74e4e;
+    border-radius: 8px;
+    border: none;
+    color: #ffffff;
+}
+
+.botonEliminar:hover {
+    background-color: #f82020;
+}
+
+
+/*Contenedor datos usuario*/
+
+.perfil {
+    display: inline-block;
+    /* margin-bottom: 2%; */
+    margin-left: 70px;
+}
+
+
+/*Espacio entre el dato y el valor*/
+
+.espacio-formulario {
+    margin-right: 20px;
+    display: inline-block;
+}
+
+
+/*
+Tamaño de mediano tablet
+*/
+
+@media screen and (min-width:768px) and (max-width:1024px) {
+    .buttonInfo {
+        margin-top: -390px;
+        margin-right: 50px;
+    }
+}
+
+
+/*
+Tamaño de pequeño de movil
+*/
+
+@media screen and (max-width:767px) {
+    body {
+        width: 100%;
+    }
+    .campos {
+        font-size: 1em;
+        width: 90%;
+        margin-left: 0%;
+    }
+    caption {
+        border-bottom: auto;
+    }
+    .infor {
+        display: block;
+        margin-left: 0px;
+    }
+    .password {
+        font-size: 1.05em;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 5%;
+    }
+    .buttonInfo {
+        margin-right: 40px;
+        margin-top: -350px;
+    }
+    .perfil {
+        width: auto;
+        display: block;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    .espacio-formulario {
+        display: block;
+    }
+    .imagen-usuario {
+        top: 0px;
+        width: 100%;
+    }
+    .icono {
+        font-size: 0.9em;
+        width: 105px;
+        height: 105px;
+        /* margin-top: 20px; */
+        padding-bottom: 2%;
+    }
+    .contenedor-boton-eliminar {
+        margin-bottom: 40px;
+    }
+    .botonEliminar {
+        font-size: 1.1em;
+        margin-bottom: 2%;
+        width: 100%;
+    }
+}

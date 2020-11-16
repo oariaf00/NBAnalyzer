@@ -1,0 +1,209 @@
+/* Contenedor si hay muchos pisos */
+
+.piso {
+    display: inline-block;
+    position: relative;
+    *display: inline;
+    zoom: 1;
+    /* height: 520px; */
+    height: auto;
+    width: 370px;
+    margin: 15px 6px 15px 10px;
+    box-shadow: 0px 0px 43px -16px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+    font-size: 1.08em;
+    background: white;
+    font-family: "Poppins", sans-serif;
+}
+
+/*Boton enlace*/
+.cuadro_enlace {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.enlace {
+    display: inline-block;
+    width: 50%;
+    /* width: 140px; */
+    color: white;
+    font-size: 1.2em;
+    background: #366ed8;
+    border:none;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.piso:hover {
+    transform: scale(1.02);
+}
+
+.div-precio {
+    font-weight: bold;
+    /* margin: 10px; */
+    /* height: 27px; */
+    margin-left: 24px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+
+}
+
+.precio {
+    font-size: 24px;
+}
+
+.ubicacion {
+    margin-left: 24px;
+    font-size: 16px;
+}
+
+.linea-separador {
+    width: 90%;
+    border: 1px solid #000000;
+    height: 0px;
+    margin-top: 16px;
+}
+
+#caracteristicas {
+    display: flex;
+    text-align: center;
+    display: flex;
+    text-align: center;
+    width: 95%;
+    margin: 25px auto 20px auto
+}
+
+#habitaciones {
+    margin-left: 5px;
+    display: flex;
+    width: 33.33%;
+}
+
+#banos {
+    display:flex;
+    width: 33.33%;
+    /* margin-left: 35px; */
+}
+
+#metros {
+    display: flex;
+    width: 33.33%;
+    margin-left: 5px;
+}
+
+#mis-pisos {
+    display: flex;
+    text-align: center;
+    /* margin-bottom: 20px; */
+}
+
+#visitas {
+    display: flex;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#favs {
+    display: flex;
+    width: 50%;
+}
+
+#iconos {
+    background-color: #F3A953;
+    position: relative;
+    top: 0px;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.6em;
+    margin-left: auto;
+}
+
+#icono-dato{
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.75em;
+    /* padding-left: 5px; */
+    text-align: center;
+    margin-right: auto;
+}
+
+#icono-dato2{
+    width: 90px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.85em;
+    /* padding-left: 5px; */
+    text-align: center;
+    margin-right: auto;
+}
+
+
+
+/*Boton favoritos*/
+.botones {
+    height:0px;
+    position: absolute;
+}
+
+.piso .buttonFav {
+    position: relative;
+    left: 270px;
+    top: -20px;
+    height: 80px;
+    width: 80px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 4;
+}
+
+.iconos_bloque {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+
+.vinculo {
+    color: black;
+    text-decoration: none;
+}
+
+.favorito{
+    position: absolute;
+}
+
+.tipo_alojamiento{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 4;
+}
+
+.etiqueta_alojamiento {
+    display: inline-block;
+    width: 140px;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 100px;
+    background: #366ed8;
+    text-align: center;
+}
+
+@media screen and (max-width:400px){
+    .piso {
+        margin-left: 2px;
+    }
+}

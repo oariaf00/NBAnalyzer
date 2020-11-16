@@ -1,0 +1,281 @@
+@charset "utf-8";
+.menu {
+    background: white;
+    height: 50px;
+    top: 0px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    box-shadow: 0px 0px 35px 1px rgba(0, 0, 0, 0.75);
+}
+
+/*Cambiar la letra y posicion de los input*/
+
+.comodidades {
+    font-family: "Poppins", sans-serif;
+    margin: 1% 5% 5% 0%;
+}
+
+.comodidad {
+    float: left;
+    margin: 0% 2% 0% 2%;
+    text-align: center;
+}
+
+/*Cambiar la letra y posicion de los input*/
+
+.colorFondo {
+    background-color: #366ed8;
+}
+
+/*Cambiar la letra y posicion de los input*/
+
+.formulario {
+    padding-left: 5%;
+    font-family: "Poppins", sans-serif;
+    font-size: 1em;
+    margin: 0% 5% 5% 5%;
+    /*background-color: #366ed8;*/
+}
+
+/*Tipo para dar el tamaño de letra a los recuadros*/
+
+.text {
+    /* font-size: 80%; */
+    font-family: "Poppins", sans-serif;
+}
+
+/*Para eliminar el check o hacerlo invisible*/
+
+input.ascensor {
+    opacity: 0;
+    padding: 10px;
+}
+
+input.ascensor:checked+label>div>img {
+    background-color: #F3A953 !important;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.ascensor:hover {
+    background-color: #F3A953;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+input.ciudad {
+    padding-left: 5px;
+    border-radius: 2px;
+    /* font-size: 18px; */
+    width: 120px;
+    font-size: 1em;
+    height: 35px;
+    border: solid 1px;
+  }
+
+/*Dar formato al contenedor de los botones*/
+
+.contenedorBotones {
+    font-family: "Poppins", sans-serif;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/*Alineacion de la descripcion*/
+
+.contenedorDescripcion {
+    font-family: "Poppins", sans-serif;
+    /* font-size: 20px; */
+    padding-left: 2%;
+    /* margin: 0% 0% 0% -5%; */
+}
+
+.error {
+    background-color: red;
+    border-radius: 5px;
+    font-size: 30px;
+    width: 550px;
+}
+
+.contenedorError {
+    margin: 0% 5% 1% 15%;
+}
+
+.estilosh3 {
+    border-bottom: solid 2px #666;
+    margin-left: 50px;
+    font-size: 30px;
+    color: black;
+}
+
+.map {
+    margin: 3% 1% 2% 3.5%;
+}
+
+/*Customize check*/
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    /* font-size: 22px; */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #366ed8;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
+    background-color: rgb(129, 129, 129);
+}
+
+/* When the checkbox is checked, add a blue background */
+
+.container input:checked~.checkmark {
+    background-color: #F3A953;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.sube-imagenes {
+    width: 350px;
+    margin: 5px;
+    display: block;
+    height: auto;
+}
+
+.contenedor-opciones {
+    margin-bottom: 50px;
+}
+
+.contenedor-titulo {
+    display: block;
+    margin: 0% 0% 4% 2%;
+}
+/*
+  Tamaño de mediano tablet
+  */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .contenedorDescripcion {
+        width: auto;
+        display: block;
+        margin: 2% 2% 0% 2%;
+        padding: 0px;
+    }
+    textarea {
+        width: 100%;
+    }
+    .text {
+        font-size: 0.9em;
+    }
+    .otroText {
+        width: 90%;
+        font-size: 0.9em;
+    }
+}
+
+/*
+Tamaño de pequeño de movil
+*/
+
+@media screen and (max-width: 767px) {
+    .contenedorDescripcion {
+        width: auto;
+        display: block;
+        margin: 2% 2% 0% 2%;
+        margin-left: 0;
+        padding: 0px;
+    }
+    textarea {
+        width: 100%;
+    }
+    .estilosh3 {
+        font-size: 1.5em;
+        margin-left: 8px;
+        width: 95%;
+    }
+    .text {
+        font-size: 0.9em;
+    }
+    .otroText {
+        width: 80%;
+        font-size: 0.9em;
+    }
+    .sube-imagenes {
+        width: 90%;
+    }
+    .contenedor-opciones {
+        margin-left: -30px;
+    }
+    .formulario {
+        margin: 0;
+        margin-left: 8px;
+        padding: 0;
+    }
+    
+    .contenedor-titulo {
+        margin: 0;
+    }
+    .contenedores {
+        margin-left: 0;
+    }
+    .contenedorBotones {
+        margin-top: 40px;
+    }
+}

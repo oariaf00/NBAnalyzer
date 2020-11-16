@@ -1,0 +1,89 @@
+/*Div*/
+
+.barra {
+    width: 100%;
+    margin-top: 90px
+}
+
+
+/*Lista*/
+
+.progressbar {
+    height: 90px;
+    position: relative;
+    counter-reset: step;
+}
+
+
+/*Items de la lista en horizontal*/
+
+.progressbar li {
+    list-style-type: none;
+    float: left;
+    width: 33.33%;
+    position: relative;
+    text-align: center;
+}
+
+
+/*Número del paso*/
+
+.progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 45px;
+    height: 45px;
+    border: solid 2px #064ACB;
+    border-radius: 100px;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    line-height: 45px;
+    background-color: white;
+}
+
+
+/*Linea de progresión*/
+
+.progressbar li:after {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    top: 22.5px;
+    left: -50%;
+    z-index: -1;
+}
+
+
+/*Limitar la barra antes del primer paso*/
+
+.progressbar li:first-child:after {
+    content: none;
+}
+
+
+/*Color del circulo paso 1*/
+
+.progressbar li.active1:before {
+    background-color: #064ACB;
+    color: white;
+}
+
+
+/*Barra de despues del paso 1*/
+
+.progressbar li.active1+li:after {
+    background-color: #F3A953;
+}
+
+@media screen and (max-width: 767px) {
+    .barra {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .progressbar {
+        padding: 0;
+    }
+}

@@ -50,32 +50,32 @@
         <!-- div para el textfield del porcentaje de tiros de campo -->
         <div id="fg" style="float:left; margin-right: 50px">
           <div><strong>% TIROS DE CAMPO</strong></div>
-          <v-text-field v-model="jugador.fg" label="Ej. 39" :rules="rules" outlined ></v-text-field>
+          <v-text-field v-model="jugador.fg" label="Ej. 0.39" :rules="rules" outlined ></v-text-field>
         </div>
         <!-- div para el textfield del porcentaje de tiros de 3 -->
         <div id="threep" style="float:left; margin-right: 50px">
           <div><strong>% TIROS DE 3 PUNTOS</strong></div>
-          <v-text-field v-model="jugador.threep" label="Ej. 34" :rules="rules" outlined ></v-text-field>
+          <v-text-field v-model="jugador.threep" label="Ej. 0.34" :rules="rules" outlined ></v-text-field>
         </div>
         <!-- div para el textfield del porcentaje de tiros libres -->
         <div id="ft" style="float:left; margin-right: 50px">
           <div><strong>% TIROS LIBRES</strong></div>
-          <v-text-field v-model="jugador.ft" label="Ej. 87" :rules="rules" outlined ></v-text-field>
+          <v-text-field v-model="jugador.ft" label="Ej. 0.87" :rules="rules" outlined ></v-text-field>
         </div>
         <!-- div para el textfield de la media de puntos por partido-->
         <div id="ft" style="float:left; margin-right: 50px">
           <div><strong>PUNTOS POR PARTIDO</strong></div>
-          <v-text-field v-model="jugador.puntos" label="Ej. 16,5" :rules="rules" outlined ></v-text-field>
+          <v-text-field v-model="jugador.puntos" label="Ej. 16" :rules="rules" outlined ></v-text-field>
         </div>
         <!-- div para el textfield de la media de rebotes por partido-->
         <div id="ft" style="float:left; margin-right: 50px">
           <div><strong>REBOTES POR PARTIDO</strong></div>
-          <v-text-field v-model="jugador.rebotes" label="Ej. 4,7" :rules="rules" outlined ></v-text-field>
+          <v-text-field v-model="jugador.rebotes" label="Ej. 4" :rules="rules" outlined ></v-text-field>
         </div>
         <!-- div para el textfield de la media de asistencias por partido -->
         <div id="ft" style="float:left; margin-right: 50px">
           <div><strong>ASISTENCIAS POR PARTIDO</strong></div>
-          <v-text-field v-model="jugador.asistencias" label="Ej. 8,5" :rules="rules" outlined ></v-text-field>
+          <v-text-field v-model="jugador.asistencias" label="Ej. 8" :rules="rules" outlined ></v-text-field>
         </div>
 
         <div id="botonBuscarJugador" class="text-center" style="float:left">
@@ -174,7 +174,7 @@ Vue.use(Vuetify);
 
 export default {
   data: () => ({
-    posiciones: ["Base", "Escolta", "Alero", "Ala-pívot", "Pívot"],
+    posiciones: ["PG", "SG", "SF", "PF", "C"],
     sheet: false,
     //Objeto jugador para almacenar los datos y pasárselos a la base de datos como parámetro
     jugador: {
@@ -209,12 +209,22 @@ export default {
                 //Mensaje de error
                 Swal.fire({
                   title: '  ¡BÚSQUEDA INCOMPLETA!',
-                  text: 'Debes introducir todos los parámetros del jugador a buscar',
+                  text: 'Debes introducir al menos la posición del jugador que quieres buscar',
                   icon: 'error',
                   confirmButtonText: 'Aceptar'
                 })
             }else{
-                //Redireccionamos a pisos
+                //Guardamos en la variable global jugador los valores que nos han introducido por pantalla
+                this.$store.state.jugador.edad = this.jugador.edad,
+                this.$store.state.jugador.posicion = this.jugador.posicion,
+                this.$store.state.jugador.fg = this.jugador.fg,
+                this.$store.state.jugador.threep = this.jugador.threep,
+                this.$store.state.jugador.ft = this.jugador.ft,
+                this.$store.state.jugador.puntos = this.jugador.puntos,
+                this.$store.state.jugador.rebotes = this.jugador.rebotes,
+                this.$store.state.jugador.asistencias = this.jugador.asistencias
+
+                //Redireccionamos a jugadores, allí se hará la consulta
                 this.$router.push('/Players');
             }
         }

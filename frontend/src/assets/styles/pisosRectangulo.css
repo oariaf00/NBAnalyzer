@@ -1,0 +1,313 @@
+/***Informacion***/
+.contenido {
+    display: block;
+    font-size: 1.1em;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: 0px 0px 35px -9px rgba(0, 0, 0, 0.75);
+    transition: all .2s ease-in-out;
+    border-radius: 20px;
+    cursor: hand;
+    height: 455px;
+    width: 95% !important;
+}
+
+
+.contenido:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 10px 8px #F3A953;
+}
+
+.imgPisos {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+}
+
+/*Imagenes*/
+.imagenes {
+    position: relative;
+    width: 100%;
+    height:100%;
+
+}
+
+.tono-claro::before {
+    content: "";
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0.23;
+}
+
+.tono-claro {
+    /* background-color: #00000038; */
+    z-index: 5;
+    height: 455px; 
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  
+}
+
+.tono-oscuro {
+    width: 171.76px;
+    height: 70px;
+    background-color: #00000058;
+    position: relative;
+    top: 180px;
+    left: 11.1%;
+    text-align: center;
+}
+
+
+.precio {
+    font-size: 2.4em;
+    color: white;
+    font-weight: bolder;
+    font-style: normal;
+    line-height: 70px;
+}
+
+#titulo {
+    position: relative;
+    top: 190px;
+    left: 11.1%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    width: 1000px;
+    height: 50px;
+    color: white;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+#ubicacion {
+    position: relative;
+    top: 185px;
+    left: 11.1%;
+    color: white;
+    width: 481px;
+    height: 40px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#caracteristicas {
+    position: relative;
+    top: 18px;
+    left: 0px;
+    /* left: 96px; */
+    height: 56px;
+    display: flex;
+    margin: auto;
+    text-align: center;
+}
+
+#habitaciones {
+    display: flex;
+    width: 33.33%;
+
+}
+
+#banos {
+    display:flex;
+    /* margin-left: 254px; */
+    width: 33.33%;
+
+}
+
+#metros {
+    display: flex;
+    /* margin-left: 254px; */
+    width: 33.33%;
+
+}
+
+#iconos {
+    background-color: #F3A953;
+    position: relative;
+    top: 0px;
+    width: 75px;
+    height: 56px;
+    text-align: center;
+    margin-left: auto;
+}
+
+#icono-dato {
+    background-color: #00000058;
+    width: 88px;
+    height: 56px;
+    color: white;
+    line-height: 56px;
+    text-align: center;
+    font-size: 1.05em;
+    margin-right: auto;
+}
+
+/*Botones Favorito*/
+
+.buttonFav {
+    position: absolute;
+    /* float:right; */
+    top: 350px;
+    /*left: 20px; */
+    /* float: right; */
+    right: 40px;
+    /* margin-top: 150px; */
+    height: 80px;
+    width: 80px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 4;
+    /* left: 92%; */
+}
+
+/*Boton enlace*/
+.cuadro_enlace {
+    position: absolute;
+    /* float:right; */
+    top: 380px;
+    width: 100%;
+    text-align: center;
+}
+
+.enlace {
+    display: inline-block;
+    width: 20%;
+    /* width: 140px; */
+    color: white;
+    font-size: 1.2em;
+    background: #366ed8;
+    border:none;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+/*Scroll imagenes*/
+.botones_desplaza {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    /* font-size: 30px; */
+}
+
+.botones_desplaza .izquierda {
+    position: absolute;
+    font-size: 50px;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    color: white;
+    left: 0;
+}
+
+.botones_desplaza .izquierda:hover{
+    background-color: #064ACB;
+    color:white;
+    opacity: 0.9;
+}
+
+.botones_desplaza .derecha {
+    position: absolute;
+    right: 0px;
+    font-size: 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.botones_desplaza .derecha:hover{
+    background-color: #064ACB;
+    color:white;
+    opacity: 0.9;
+}
+
+@media screen and (max-width:1024px){
+    .contenido {
+        width: 90%;
+        height: 400px;
+        left: 0px;
+    }
+
+    .tono-claro{
+        height: 100%; 
+        width:100%;
+    /* top: -407px; */
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    .tono-oscuro {
+        width: 130px;
+        height: 50px;
+    }
+
+    .precio{
+        font-size: 2em;
+        line-height: 50px;
+    }
+
+    #titulo {
+        width: 80%;
+        height: 40px;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+        font-size: 1em;
+    }
+
+    #ubicacion {
+        font-size: 1em;
+        display: flex;
+        line-height: 35px;
+    }
+
+    #caracteristicas {
+        left: 0px;
+        font-size: 0.7em;
+        margin: auto;
+        width: 90%;
+        text-align: center;
+    }
+
+    #iconos {
+        width: 40px;
+        margin-left: auto;
+    }
+
+    #icono-dato {
+        width: 50px;
+        line-height: 56px;
+        margin-right: auto;
+    }
+
+    #habitaciones {
+        width: 33.33%;
+    }
+
+    #banos {
+        width: 33.33%;
+        margin-left: 0px;
+    }
+
+    #metros {
+        width: 33.33%;
+        margin-left: 0px;
+
+    }
+    
+    .buttonFav {
+        font-size: 11px;
+        margin-top: 140px;
+    }
+}

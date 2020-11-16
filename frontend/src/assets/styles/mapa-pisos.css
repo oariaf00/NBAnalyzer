@@ -1,0 +1,61 @@
+/*Estilo para el pie de la informacion de contacto*/
+
+.informa {
+    margin: 0% 0% 0% 1%;
+}
+
+
+/*Contenedor para juntar las redes y la informacion de contacto*/
+
+.contenedorUbicacion {
+    display: flex;
+    padding-left: 2%;
+    padding-top: 2%;
+    margin: 0% 0% 0% 0%;
+}
+
+.map {
+    /* margin: 2% 1% 2% 3.5%; */
+    border: #6e6e6e 2.5px solid;
+    box-shadow: 4px 6px 21px 10px #6e6e6e;
+}
+
+#mapid {
+    width: 100%;
+    height: 59em;
+}
+
+
+/*
+Tamaño de mediano tablet
+*/
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #mapid {
+        display: static;
+        height: 30em;
+    }
+}
+
+
+/*
+Tamaño de pequeño de movil
+*/
+
+@media screen and (max-width: 767px) {
+    #mapid {
+        display: static;
+        height: 23em;
+        width: 97%;
+        /* margin-right: 300px; */
+        margin: -2% 1% 2% 1%;
+    }
+    .contenedorUbicacion {
+        display: block;
+    }
+    .map {
+        display: static;
+        /* margin: auto; */
+        margin: 1.5% 1% 1% 1%;
+    }
+}

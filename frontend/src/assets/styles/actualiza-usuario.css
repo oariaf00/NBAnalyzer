@@ -1,0 +1,266 @@
+/*Dar formato a un titulo para destacar la accion*/
+* {
+    margin-top: revert;
+    
+}
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
+.aumentoTitulo {
+    font-size: 135%;
+    padding-left: 5%;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+}
+
+/*Letra y alineacion entre los botones*/
+
+.botonAceptar {
+    font-family: 'Poppins', sans-serif;
+    font-size: 100%;
+    text-align: center;
+    margin-right: 2%;
+    width: 120px;
+    height: 50px;
+    background-color: white;
+    border-style: solid dotted;
+    border-radius: 30px;
+    border-color: black;
+}
+
+.botonCancelar {
+    font-family: 'Poppins', sans-serif;
+    font-size: 100%;
+    text-align: center;
+    margin-right: 2%;
+    width: 120px;
+    height: 50px;
+    background-color: white;
+    border-style: solid dotted;
+    border-radius: 30px;
+    border-color: black;
+}
+
+.cabecera {
+    border-bottom: solid 2px #d6d6d6;
+    margin-left: 50px;
+    font-size: 30px;
+}
+
+/*Accion cuando se para por encima de boton*/
+
+.botonCancelar:hover {
+    background-color: #f74e4e;
+    color: white;
+}
+
+.botonAceptar:hover {
+    background-color: #366ed8;
+    color: white;
+}
+
+/*Accion para cuando se clica en el boton*/
+
+.botones:active {
+    background-color: #F3A953;
+    border-color: #366ed8;
+}
+
+/*Centrar los formularios*/
+
+.actualiza {
+    text-align: center;
+    margin: auto;
+    width: 560px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+/*Cambiar la letra y posicion de los input*/
+
+.formulario {
+    /* font-size: 120%; */
+    /* margin-left: 25%; */
+    text-align: center;
+    /* border-style: solid; */
+    width: 560px;
+    height: 300px;
+    /* border-color: #F3A953; */
+    /* border-width: 6px; */
+    /* border-radius: 20px; */
+}
+
+.formulario2 {
+    /* font-size: 120%; */
+    /* margin-left: 25%; */
+    text-align: center;
+    border-style: solid;
+    width: 560px;
+    height: 340px;
+    border-color: #366ed8;
+    background-color: #b9b9b912;
+    border-width: 6px;
+    border-radius: 20px;
+    height: auto;
+    /* color: white; */
+}
+
+/*Separacion del titulo*/
+
+caption {
+    font-size: 27px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-bottom: solid 2px #686868;
+    /* margin-left: 10px; */
+}
+
+/* input {
+    border-radius: 10px;
+    padding-left: 10px;
+    border: solid 2px rgb(68, 68, 68);
+    font-size: 17px;
+} */
+
+.formulario3 {
+    /* font-size: 120%; */
+    text-align: center;
+}
+
+.redondeo {
+    text-align: center;
+    margin-left: 20%;
+    width: 700px;
+    height: 250px;
+    border-color: #F3A953;
+    border-width: 6px;
+    border-radius: 20px;
+}
+
+/* .formulario2 table input {
+    width: 200px;
+} */
+
+.datos {
+    font-size: 1.2em;
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    /* margin-left: 15%; */
+    display: inline-block;
+}
+
+.cab-texto {
+    font-size: 27px;
+    margin: 10px 5px 20px 5px;
+    border-bottom: solid 2px #686868;
+    text-align: center;
+    width: 100%;
+}
+
+.contenedor {
+    display: inline-block;
+    width: 40%;
+}
+
+.contenedor input {
+    border-radius: 2px;
+    padding-left: 5px;
+    border: solid 1px #9b9b9b;
+    font-size: 17px;
+    width: 250px;
+}
+
+.contenedor label {
+    font-size: 0.85em;
+    width: 50%;
+}
+
+.separador {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.espacios {
+    display: inline-block;
+    width: 0%;
+}
+
+.botones {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.botones input {
+    border-radius: 10px;
+    /* padding-left: 10px; */
+    border: solid 2px rgb(68, 68, 68);
+    font-size: 17px;
+    width: 30%;
+}
+
+/* .actualiza#password .botones input {
+    margin-left: 10%;
+    width: 30%;
+} */
+
+/*
+Tamaño de mediano tablet
+*/
+
+@media screen and (min-width:768px) and (max-width:1024px) {}
+
+/*
+Tamaño de pequeño de movil
+*/
+
+@media screen and (max-width:767px) {
+    .cabecera {
+        font-size: 1.5em;
+        margin-left: -0.5%;
+    }
+    .cab-texto {
+        font-size: 1.2em;
+        width: auto;
+    }
+    .actualiza {
+        width: auto;
+    }
+    .datos {
+        margin-left: 2%;
+        display:block
+    }
+    .contenedor {
+        display: block;
+        width: auto;
+        margin-top: 2%;
+    }
+    .contenedor input {
+        /* border-radius: 10px; */
+        padding-left: 10px;
+        /* border: solid 2px rgb(68, 68, 68); */
+        font-size: 17px;
+        width: 90%;
+    }
+    .separador {
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    .espacios {
+        display: none;
+    }
+    .botones {
+        text-align: center;
+    }
+    .formulario2 {
+        width: auto;
+        height: auto;
+    }
+    .botones input {
+        width: 40%;
+        height: 40px;
+        font-size: 1em;
+    }
+    .botonCancelar, .botonAceptar {
+        font-size: 1.1em;
+    }
+}

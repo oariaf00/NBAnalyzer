@@ -1,151 +1,133 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
+    <div>
+        <div class="contenido">
+            <div class="imagenes">
+                <swiper class="swiper" :options="swiperOption">
+                    <swiper-slide class="swiper-slide" v-for="(imagen,j) in imagenes" :key="j">
+                        <img :src="`/pisos/${imagen.url}`"/>
+                    
+                
+                    <div class="tono-claro">
+                            <div id="caracteristicas">
+                                <div id="habitaciones">
+                                    <div id="iconos">
+                                        <i class="fas fa-bed fa-2x" style="color:white;line-height: 56px;"></i>
+                                    </div>
+                                    <div id="icono-dato">
+                                        <strong>{{ piso.habitaciones }}</strong> habs
+                                    </div>
+                                </div>
+                                <div id="banos">
+                                    <div id="iconos">
+                                        <i class="fas fa-bath fa-2x" style="color:white;line-height: 56px;"></i>
+                                    </div>
+                                    <div id="icono-dato">
+                                        <strong>{{ piso.baños }}</strong> baños
+                                    </div>
+                                </div>
+                                <div id="metros">
+                                    <div id="iconos">
+                                        <i class="fas fa-ruler-combined fa-2x" style="color:white;line-height: 56px;"></i>
+                                    </div>
+                                    <div id="icono-dato" style="line-height: 50px;">
+                                        <strong>{{ piso.metros }}</strong> m<sup>2</sup>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tono-oscuro">
+                                <span class="precio">{{ piso.precio }}€</span>
+                            </div>
+                            <div id="titulo">
+                                {{ piso.titulo }}
+                            </div>
+                            <div id="ubicacion">
+                                <i class="fas fa-map-marker-alt fa-2x" style="margin-right: 7px;"></i> C/ {{piso.calle}} {{piso.portal}} {{piso.piso}}º{{piso.letra}}, {{piso.ciudad}}
+                            </div>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+                            <div class="cuadro_enlace">
+                                <router-link :to="'/visualizacion/'+ piso.idpiso">
+                                    <label class="enlace">Ver más</label>
+                                </router-link>
+                            </div>
+                    </div> 
+                    </swiper-slide>    
+                     <div class="swiper-pagination" slot="pagination"></div>
+                    <div class="swiper-button-prev" slot="button-prev"></div>
+                    <div class="swiper-button-next" slot="button-next"></div>
+                </swiper>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
-
-    data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
-    }),
-  }
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+export default {
+    name: 'Rectangulos',
+    props: {
+        piso: Object,
+        imagenes: Array
+    },
+    components: {
+        Swiper,
+        SwiperSlide
+    },
+    data(){
+        return {
+            swiperOption: {
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'progressbar'
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                }
+            }
+        }
+    },
+}
 </script>
+<style src="@/assets/styles/pisosRectangulo.css" scoped></style>
+
+<style scoped>
+/***Swiper***/
+.swiper-container
+{
+    width: 100%;
+    position: relative;
+    margin-left: auto;
+    max-width:100%;
+    height: 100%;
+}
+.swiper-slide img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.swiper-button-next
+{
+    display: block !important;
+    --swiper-theme-color: #000;
+    z-index: 5 !important;
+}
+.swiper-button-prev
+{
+    display: block !important;
+    --swiper-theme-color: #000;
+    z-index: 5 !important;
+}
+.swiper-button-next:hover
+{
+    display: block !important;
+}
+.swiper-button-prev:hover
+{
+    display: block !important;
+}
+.swiper-pagination-bullet-active
+{
+    --swiper-theme-color: #fff;
+}
+</style>
