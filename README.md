@@ -43,10 +43,7 @@ O en su defecto,
 nodemon app.js
 ```
 
-Una vez tengamos 
-
-Una vez tengamos 
-
+Una vez tengamos el backend arrancado, procederemos a arrancar el frontend.
 
 
 INSTRUCCIONES FRONTEND:
