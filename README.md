@@ -25,8 +25,29 @@ CREATE (p)-[:BELONGS]->(t)
 
 -> Cuando hayamos hecho este paso ya dispondremos de la base de datos íntegra para poder ejecutar el programa
 
+INSTRUCCIONES BACKEND:
+
+Una vez hayamos descargado el proyecto, debemos abrir la carpeta del proyecto (NBAnalyzer) y ejecutar el siguente comando desde la terminal en el directorio para que instale todas las tecnologías necesarias par el funcionamiento de este proyecto:
+
+```
+npm install
+```
+
+Una vez tengamos esto, procederemos a abrir la carpeta del backend, donde debemos ejecutar el siguiente comando para arrancar el proyecto:
+
+```
+node app.js
+```
+O en su defecto,
+```
+nodemon app.js
+```
+
+Una vez tengamos 
+
+Una vez tengamos 
+
+
 
 INSTRUCCIONES FRONTEND:
-
-INSTRUCCIONES BACKEND:
 
