@@ -94,96 +94,96 @@ export default {
           text: 'Nombre',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'nombre',
         },
         { text: 'Edad',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'edad'
         },
         {
           text: 'POS',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'posicion'
         },
         {
           text: 'Equipo',
           align: 'start',
           sortable: false,
-          value: 'fat'
+          value: 'equipo'
         },
         {
           text: 'SALARY ($)',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'salario'
         },
         {
           text: 'PPG',
           align: 'start',
           sortable: false,
-          value: 'carbs'
+          value: 'puntos'
         },
         {
           text: 'RPG',
           align: 'start',
           sortable: false,
-          value: 'protein'
+          value: 'rebotes'
         },
         {
           text: 'ORB',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'rebotesOfensivos'
         },
         {
           text: 'DRB',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'rebotesDefensivos'
         },
         {
           text: 'SPG',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'robos'
         },
         {
           text: 'TPG',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'tapones'
         },
         {
           text: 'APG',
           align: 'start',
           sortable: false,
-          value: 'iron'
+          value: 'asistencias'
         },
         {
           text: 'FG%',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'fg'
         },
         {
           text: 'FT%',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'ft'
         },
         {
           text: '3P%',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'threep'
         },
         {
           text: 'FPG',
           align: 'start',
           sortable: false,
-          value: 'calories'
+          value: 'faltas'
         },
         
 
@@ -232,26 +232,26 @@ export default {
         console.log("Se ha resuelto correctamente la query de /Players: "+response.data)
         //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
         //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
+        
         for (var step = 0; step < response.data.length; step+=16) {
-            //Aqui añadimos los elementos a la variable jugador y luego al array
-            this.jugador.nombre = response.data[step]
-            this.jugador.edad = response.data[step+1]
-            this.jugador.posicion = response.data[step+2]
-            this.jugador.equipo = response.data[step+3]
-            this.jugador.salario = response.data[step+4]
-            this.jugador.puntos = response.data[step+5]
-            this.jugador.rebotes = response.data[step+6]
-            this.jugador.rebotesOfensivos = response.data[step+7]
-            this.jugador.rebotesDefensivos = response.data[step+8]
-            this.jugador.robos = response.data[step+9]
-            this.jugador.perdidas = response.data[step+10]
-            this.jugador.asistencias = response.data[step+11]
-            this.jugador.fg = response.data[step+12]
-            this.jugador.ft = response.data[step+13]
-            this.jugador.threep = response.data[step+14]
-            this.jugador.faltas = response.data[step+15]
-            console.log(this.jugador)
-            this.jugadores.push(this.jugador);
+          this.jugadores.push({ 
+            "nombre": response.data[step],
+            "edad": response.data[step+1],
+            "posicion": response.data[step+2],
+            "equipo":response.data[step+3],
+            "salario":response.data[step+4],
+            "puntos":response.data[step+5],
+            "rebotes":response.data[step+6],
+            "rebotesOfensivos":response.data[step+7],
+            "rebotesDefensivos":response.data[step+8],
+            "robos":response.data[step+9],
+            "perdidas":response.data[step+10],
+            "asistencias":response.data[step+11],
+            "fg":response.data[step+12],
+            "ft":response.data[step+13],
+            "threep":response.data[step+14],
+            "faltas": response.data[step+15]
+          });
         }
       }).catch((e) => {
               console.log(e.message);
@@ -260,6 +260,24 @@ export default {
     methods:{
       volverAlInicio(){
         this.$router.push("/");
+      },
+      resetearJugador(){
+        this.jugador.nombre = undefined
+        this.jugador.edad = undefined
+        this.jugador.posicion = undefined
+        this.jugador.equipo = undefined
+        this.jugador.salario = undefined
+        this.jugador.puntos = undefined
+        this.jugador.rebotes = undefined
+        this.jugador.rebotesOfensivos = undefined
+        this.jugador.rebotesDefensivos = undefined
+        this.jugador.robos = undefined
+        this.jugador.perdidas = undefined
+        this.jugador.asistencias = undefined
+        this.jugador.fg = undefined
+        this.jugador.ft = undefined
+        this.jugador.threep = undefined
+        this.jugador.faltas = undefined
       }
     }
 };
