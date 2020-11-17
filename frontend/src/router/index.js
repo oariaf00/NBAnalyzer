@@ -15,6 +15,11 @@ const routes = [
     path: '/Players',
     name: 'players',
     component: Players
+  },
+  {
+    path: '/Styles',
+    name: 'styles',
+    component: Players
   }
 ]
 

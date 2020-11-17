@@ -106,7 +106,7 @@
         <!-- Boton para comenzar la búsqueda -->
         <v-row align="center" style="float:left; width: 50%">
           <v-col cols="12">
-            <v-btn rounded color="primary" dark >RECOMENDAR JUGADORES</v-btn>
+            <v-btn v-on:click= "recomendarJugadores()" rounded color="primary" dark >RECOMENDAR JUGADORES</v-btn>
           </v-col>
           
         </v-row>
@@ -194,8 +194,8 @@ export default {
       ft: undefined,
       threep: undefined,
     },
-    items: ['Jugador defensivo', 'Playmaker', 'Jugador ofensivo', '3-And-D'],
-    top: ['Top 3', 'Top 10', 'Top 15'],
+    items: ['Defensive rebounder', 'Playmaker', 'Offensive rebounder', '3-And-D', 'Defensive Player'],
+    top: ['Top 3', 'Top 10', 'Top 15', 'Top 25'],
     estilo:"",
     numJugadores: 0,
     rules: undefined,
@@ -208,7 +208,7 @@ export default {
             if(this.jugador.posicion == ''){
                 //Mensaje de error
                 Swal.fire({
-                  title: '  ¡BÚSQUEDA INCOMPLETA!',
+                  title: '¡BÚSQUEDA INCOMPLETA!',
                   text: 'Debes introducir al menos la posición del jugador que quieres buscar',
                   icon: 'error',
                   confirmButtonText: 'Aceptar'
@@ -226,6 +226,26 @@ export default {
 
                 //Redireccionamos a jugadores, allí se hará la consulta
                 this.$router.push('/Players');
+            }
+        },
+        recomendarJugadores(){
+            //Comprobamos que haya introducido algun valor en todos los parámetros de búsqueda
+            console.log("Pulsamos el boton de buscar jugadores");
+            if(this.estilo == '' || this.numJugadores == 0){
+                //Mensaje de error
+                Swal.fire({
+                  title: '  ¡BÚSQUEDA INCOMPLETA!',
+                  text: 'Debes introducir el estilo del jugador y el top que quieres buscar',
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+                })
+            }else{
+                //Guardamos el número de jugadores que desea el usuario y el estilo que ha escogido
+                this.$store.state.topJugadores = this.numjugadores
+                this.$store.state.estilo = this.estilo
+
+                //Redireccionamos a styles, allí se hará la consulta
+                this.$router.push('/Styles');
             }
         }
     }

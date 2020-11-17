@@ -23,7 +23,8 @@ export default new Vuex.Store({
       ft: undefined,
       threep: undefined,
     },
-    estilo: ['Jugador defensivo', 'Playmaker', 'Jugador ofensivo', '3-And-D']
+    numJugadores: 0,
+    estilo: ''
   },
   mutations: {
   },
