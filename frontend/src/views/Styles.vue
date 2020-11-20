@@ -217,19 +217,13 @@ export default {
     icon: undefined
   }),
     mounted(){
-      axios.get('http://localhost:3000/lookPlayers',{
+      axios.get('http://localhost:3000/recommended',{
         params:{
-          edad: this.$store.state.jugador.edad,
-          posicion: this.$store.state.jugador.posicion,
-          fg: this.$store.state.jugador.fg,
-          threep: this.$store.state.jugador.threep,
-          ft: this.$store.state.jugador.ft,
-          puntos: this.$store.state.jugador.puntos,
-          rebotes: this.$store.state.jugador.rebotes,
-          asistencias: this.$store.state.jugador.asistencias
+          numJugadores: this.$store.state.numJugadores,
+          estilo: this.$store.state.estilo
         }
       }).then(response=>{
-        console.log("Se ha resuelto correctamente la query de /Players: "+response.data)
+        console.log("Se ha resuelto correctamente la query de /StylePlayers: "+response.data)
         //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
         //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
         
@@ -260,24 +254,6 @@ export default {
     methods:{
       volverAlInicio(){
         this.$router.push("/");
-      },
-      resetearJugador(){
-        this.jugador.nombre = undefined
-        this.jugador.edad = undefined
-        this.jugador.posicion = undefined
-        this.jugador.equipo = undefined
-        this.jugador.salario = undefined
-        this.jugador.puntos = undefined
-        this.jugador.rebotes = undefined
-        this.jugador.rebotesOfensivos = undefined
-        this.jugador.rebotesDefensivos = undefined
-        this.jugador.robos = undefined
-        this.jugador.perdidas = undefined
-        this.jugador.asistencias = undefined
-        this.jugador.fg = undefined
-        this.jugador.ft = undefined
-        this.jugador.threep = undefined
-        this.jugador.faltas = undefined
       }
     }
 };

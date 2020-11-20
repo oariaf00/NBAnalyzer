@@ -230,7 +230,7 @@ export default {
         },
         recomendarJugadores(){
             //Comprobamos que haya introducido algun valor en todos los parámetros de búsqueda
-            console.log("Pulsamos el boton de buscar jugadores");
+            console.log("Pulsamos el boton de recomendar jugadores");
             if(this.estilo == '' || this.numJugadores == 0){
                 //Mensaje de error
                 Swal.fire({
@@ -241,9 +241,19 @@ export default {
                 })
             }else{
                 //Guardamos el número de jugadores que desea el usuario y el estilo que ha escogido
-                this.$store.state.topJugadores = this.numjugadores
-                this.$store.state.estilo = this.estilo
+                if(this.numJugadores=='Top 3'){
+                  this.numJugadores=3
+                }else if(this.numJugadores=='Top 10'){
+                  this.numJugadores=10
+                }else if(this.numJugadores=='Top 15'){
+                  this.numJugadores=15
+                }else{
+                  this.numJugadores=25
+                }
 
+                this.$store.state.numJugadores = this.numJugadores
+                this.$store.state.estilo = this.estilo
+                console.log(this.$store.state.numJugadores)
                 //Redireccionamos a styles, allí se hará la consulta
                 this.$router.push('/Styles');
             }

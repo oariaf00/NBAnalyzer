@@ -23,7 +23,7 @@ export default new Vuex.Store({
       ft: undefined,
       threep: undefined,
     },
-    numJugadores: 0,
+    numJugadores: undefined,
     estilo: ''
   },
   mutations: {

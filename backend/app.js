@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const axios = require('axios');
 const port = 3000;
-const ruta = "http://localhost:8080"
+const ruta = "http://localhost:3000"
 var cors = require("cors");
 const neo4j = require("neo4j-driver");
 const driver = neo4j.driver( "bolt://localhost:7687", neo4j.auth.basic("neo4j", "nbanalyzer"));
@@ -37,7 +37,49 @@ app.get("/lookPlayers", function(req, res) {
   if(req.query.asistencias!=undefined){
     query+= " AND p.asistencias_pp>"+req.query.asistencias+""
   }
-  query+=" RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.valoracion DESC LIMIT 20"
+  query+=" RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.valoracion DESC"
+  console.log(query);
+  var lista=[]
+  const resultPromise = session.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+        lista.push(result.get(1));
+        lista.push(result.get(2));
+        lista.push(result.get(3));
+        lista.push(result.get(4));
+        lista.push(result.get(5));
+        lista.push(result.get(6));
+        lista.push(result.get(7));
+        lista.push(result.get(8));
+        lista.push(result.get(9));
+        lista.push(result.get(10));
+        lista.push(result.get(11));
+        lista.push(result.get(12));
+        lista.push(result.get(13));
+        lista.push(result.get(14));
+        lista.push(result.get(15));
+    },
+    onCompleted: function() {
+      res.send(lista);
+      //session.close();
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA BUSCAR EN BASE AL ESTILO DEL JUGADOR
+app.get("/recommended", function(req, res) {
+  console.log("He llegado al método de stylePlayers en app.js");
+  console.log(req.query.numJugadores)
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) "
+  if(req.query.estilo="3-And-D"){
+    query+="where p.threep>0.34 and p.robos_pp>1 and p.rebotes_defensivos>4  RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.threep, p.robos_pp DESC limit "+req.query.numJugadores+""
+  }else if(req.query.estilo="Playmaker"){
+    query+="where "
+  }
   console.log(query);
   var lista=[]
   const resultPromise = session.run(query).subscribe({
