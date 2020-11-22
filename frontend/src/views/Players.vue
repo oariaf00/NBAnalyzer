@@ -153,7 +153,7 @@ export default {
           text: 'TPG',
           align: 'start',
           sortable: false,
-          value: 'tapones'
+          value: 'perdidas'
         },
         {
           text: 'APG',

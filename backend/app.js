@@ -72,13 +72,19 @@ app.get("/lookPlayers", function(req, res) {
 //FUNCION PARA BUSCAR EN BASE AL ESTILO DEL JUGADOR
 app.get("/recommended", function(req, res) {
   console.log("He llegado al método de stylePlayers en app.js");
-  console.log(req.query.numJugadores)
+  console.log(req.query.estilo)
   //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
   query = "MATCH (p:Player) "
-  if(req.query.estilo="3-And-D"){
+  if(req.query.estilo=="3-And-D"){
     query+="where p.threep>0.34 and p.robos_pp>1 and p.rebotes_defensivos>4  RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.threep, p.robos_pp DESC limit "+req.query.numJugadores+""
-  }else if(req.query.estilo="Playmaker"){
-    query+="where "
+  }else if(req.query.estilo=="Playmaker"){
+    query+="where exists(p.asistencias_pp) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.asistencias_pp DESC limit "+req.query.numJugadores+""
+  }else if(req.query.estilo=="Defensive Player"){
+    query+="where exists(p.robos_pp) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.robos_pp DESC limit "+req.query.numJugadores+""
+  }else if(req.query.estilo=="Defensive rebounder"){
+    query+="where exists(p.rebotes_defensivos) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.rebotes_defensivos DESC limit "+req.query.numJugadores+""
+  }else if(req.query.estilo=="Offensive rebounder"){
+    query+="where exists(p.rebotes_ofensivos) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.rebotes_ofensivos DESC limit "+req.query.numJugadores+""
   }
   console.log(query);
   var lista=[]
