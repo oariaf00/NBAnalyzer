@@ -25,14 +25,14 @@ CREATE (p)-[:BELONGS]->(t)
 
 -> Cuando hayamos hecho este paso ya dispondremos de la base de datos íntegra para poder ejecutar el programa
 
-# ANTES DE ARRANCAR FRONTEND Y BACKEND DEBERÁ DIRIGIRSE AL DIRECTORIO DE NBAnalyzer Y EN LA TERMINAL EJECUTAR EL SIGUIENTE COMANDO:
+
+# INSTRUCCIONES BACKEND:
+
+Primero deberá entrar a la carpeta del backend desde la terminal, e instalar todos los componentes de la aplicación mediante el siguiente comando (Este proceso puede demorarse un poco):
 
 ```
 npm install
 ```
-
-
-# INSTRUCCIONES BACKEND:
 
 Una vez tengamos esto, procederemos a abrir la carpeta del backend, donde debemos ejecutar el siguiente comando para arrancar el proyecto:
 
@@ -49,7 +49,13 @@ Una vez tengamos el backend arrancado, procederemos a arrancar el frontend.
 
 # INSTRUCCIONES FRONTEND:
 
-Primero debemos arrancar una terminal y dirigirnos al directorio NBAnalyzer/frontend. Una vez estemos ahí, para arrancar la aplicación simplemente se deberá ejecutar el siguiente comando:
+Primero deberá entrar a la carpeta del backend desde la terminal, e instalar todos los componentes de la aplicación mediante el siguiente comando (Este proceso puede demorarse un poco):
+
+```
+npm install
+```
+
+Una vez realizado el paso anterior, para arrancar la aplicación simplemente se deberá ejecutar el siguiente comando:
 
 ```
 npm run electron:serve
