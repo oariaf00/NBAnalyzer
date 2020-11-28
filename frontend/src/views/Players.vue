@@ -81,8 +81,11 @@
 
 <script>
 // @ is an alias to /src
+//const Swal = require('sweetalert2')
 import Vue from "vue";
 import Vuetify from "vuetify/lib";
+import swal from 'sweetalert2';
+window.Swal = swal;
 const axios= require("axios");
 
 Vue.use(Vuetify);
@@ -229,7 +232,6 @@ export default {
           asistencias: this.$store.state.jugador.asistencias
         }
       }).then(response=>{
-        console.log("Se ha resuelto correctamente la query de /Players: "+response.data)
         //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
         //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
         

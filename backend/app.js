@@ -7,13 +7,12 @@ const ruta = "http://localhost:3000"
 var cors = require("cors");
 const neo4j = require("neo4j-driver");
 const driver = neo4j.driver( "bolt://localhost:7687", neo4j.auth.basic("neo4j", "nbanalyzer"));
-const session = driver.session();
+//const session = driver.session();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/lookPlayers", function(req, res) {
-  console.log("He llegado al método de /Players en app.js");
   //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
   query = "MATCH (p:Player) WHERE p.posicion='"+req.query.posicion+"'"
   if(req.query.edad!=undefined){
@@ -38,9 +37,9 @@ app.get("/lookPlayers", function(req, res) {
     query+= " AND p.asistencias_pp>"+req.query.asistencias+""
   }
   query+=" RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.valoracion DESC"
-  console.log(query);
   var lista=[]
-  const resultPromise = session.run(query).subscribe({
+  const consultaFiltro= driver.session();
+  consultaFiltro.run(query).subscribe({
     onNext: function(result) {
         lista.push(result.get(0));
         lista.push(result.get(1));
@@ -61,7 +60,149 @@ app.get("/lookPlayers", function(req, res) {
     },
     onCompleted: function() {
       res.send(lista);
-      //session.close();
+      consultaFiltro.close();
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA DEVOLVER LA MEDIA DE TRIPLES DE LOS JUGADORES
+app.get("/avg3p", function(req, res) {
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) return avg(p.threep)"
+  var lista=[]
+  const consultaTriples = driver.session();
+  consultaTriples.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+    },
+    onCompleted: function() {
+      consultaTriples.close();
+      res.send(lista);
+      
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA DEVOLVER LA MEDIA DE ROBOS DE LOS JUGADORES
+app.get("/avgRobos", function(req, res) {
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) where p.posicion='SF' or p.posicion='SG' or p.posicion='PG' return avg(p.robos_pp)"
+  var lista=[]
+  const consultaRobos = driver.session();
+  consultaRobos.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+    },
+    onCompleted: function() {
+      consultaRobos.close();
+      res.send(lista);
+      
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA DEVOLVER LA MEDIA DE ROBOS DE LOS JUGADORES
+app.get("/avgRebotesDef", function(req, res) {
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) where p.posicion='PF' or p.posicion='C' return avg(p.rebotes_defensivos)"
+  var lista=[]
+  const consultaRebotesDef = driver.session();
+  consultaRebotesDef.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+    },
+    onCompleted: function() {
+      res.send(lista);
+      consultaRebotesDef.close();
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA DEVOLVER LA MEDIA DE ASISTENCIAS DE UN BASE
+app.get("/avgAsistencias", function(req, res) {
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) where p.posicion='PG' return avg(p.asistencias_pp)"
+  var lista=[]
+  const consultaAsistencias = driver.session();
+  consultaAsistencias.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+    },
+    onCompleted: function() {
+      res.send(lista);
+      consultaAsistencias.close();
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA DEVOLVER LA MEDIA DE PUNTOS DE UN BASE/ESCOLTA
+app.get("/avgPuntos", function(req, res) {
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) where p.posicion='PG' or p.posicion='SG' return avg(p.puntos_pp)"
+  var lista=[]
+  const consultaPuntos = driver.session();
+  consultaPuntos.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+    },
+    onCompleted: function() {
+      res.send(lista);
+      consultaPuntos.close();
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA DEVOLVER LA MEDIA DE PUNTOS DE UN BASE/ESCOLTA
+app.get("/avgTapones", function(req, res) {
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) where p.posicion='SF' or p.posicion='PF' or p.posicion='C' return avg(p.tapones_pp)"
+  var lista=[]
+  const consultaTapones = driver.session();
+  consultaTapones.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+    },
+    onCompleted: function() {
+      res.send(lista);
+      consultaTapones.close();
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+});
+
+//FUNCION PARA DEVOLVER LA MEDIA DE REBOTES
+app.get("/avgRebotes", function(req, res) {
+  //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
+  query = "MATCH (p:Player) where p.posicion='PF' or p.posicion='C' return avg(p.rebotes_pp)"
+  var lista=[]
+  const consultaRebotes = driver.session();
+  consultaRebotes.run(query).subscribe({
+    onNext: function(result) {
+        lista.push(result.get(0));
+    },
+    onCompleted: function() {
+      res.send(lista);
+      consultaRebotes.close();
     },
     onError: function(error) {
       console.log(error);
@@ -71,24 +212,31 @@ app.get("/lookPlayers", function(req, res) {
 
 //FUNCION PARA BUSCAR EN BASE AL ESTILO DEL JUGADOR
 app.get("/recommended", function(req, res) {
-  console.log("He llegado al método de stylePlayers en app.js");
-  console.log(req.query.estilo)
   //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
   query = "MATCH (p:Player) "
-  if(req.query.estilo=="3-And-D"){
-    query+="where p.threep>0.34 and p.robos_pp>1 and p.rebotes_defensivos>4  RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.threep, p.robos_pp DESC limit "+req.query.numJugadores+""
+  if(req.query.estilo=="3&D"){
+    query+="where 0.7> p.threep >"+req.query.avg3p+" and p.robos_pp>"+req.query.avgRobos+" and p.rebotes_defensivos>"+req.query.avgRebotesDef+" and p.posicion='"+req.query.posicion+"' RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.threep DESC limit "+req.query.numJugadores+""
   }else if(req.query.estilo=="Playmaker"){
-    query+="where exists(p.asistencias_pp) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.asistencias_pp DESC limit "+req.query.numJugadores+""
+    query+="where p.asistencias_pp>"+req.query.avgAsistencias+" and p.puntos_pp>"+req.query.avgPuntos+" and p.posicion='"+req.query.posicion+"' RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.asistencias_pp DESC limit "+req.query.numJugadores+""
   }else if(req.query.estilo=="Defensive Player"){
-    query+="where exists(p.robos_pp) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.robos_pp DESC limit "+req.query.numJugadores+""
+    query+="where p.robos_pp>"+req.query.avgRobos+" and p.rebotes_defensivos>"+req.query.avgRebotesDef+" and p.tapones_pp>"+req.query.avgTapones+" and p.posicion='"+req.query.posicion+"' RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.robos_pp DESC limit "+req.query.numJugadores+""
   }else if(req.query.estilo=="Defensive rebounder"){
-    query+="where exists(p.rebotes_defensivos) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.rebotes_defensivos DESC limit "+req.query.numJugadores+""
+    query+="where exists(p.rebotes_defensivos) and p.posicion='"+req.query.posicion+"' RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.rebotes_defensivos DESC limit "+req.query.numJugadores+""
   }else if(req.query.estilo=="Offensive rebounder"){
-    query+="where exists(p.rebotes_ofensivos) RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.rebotes_ofensivos DESC limit "+req.query.numJugadores+""
+    query+="where exists(p.rebotes_ofensivos) and p.posicion='"+req.query.posicion+"' RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.rebotes_ofensivos DESC limit "+req.query.numJugadores+""
+  }else if(req.query.estilo=="All-around player"){
+    //Si es base o escolta hacemos una búsqueda determinada
+    if(req.query.posicion=='PG' || req.query.posicion=='SG'){
+      query+="where p.rebotes_pp>"+req.query.avgRebotes+" and p.posicion='"+req.query.posicion+"' RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.valoracion DESC limit "+req.query.numJugadores+""
+    }
+    //Si es alero, ala-pivot o pivot hacemos otra búsqueda
+    else{
+      query+="where p.asistencias_pp>"+req.query.avgAsistencias+" and p.posicion='"+req.query.posicion+"' RETURN p.nombre, p.edad, p.posicion, p.equipo, p.salario, p.puntos_pp, p.rebotes_pp, p.rebotes_ofensivos, p.rebotes_defensivos, p.robos_pp, p.perdidas_pp, p.asistencias_pp, p.fg, p.ft, p.threep, p.faltas_pp ORDER BY p.asistencias_pp DESC limit "+req.query.numJugadores+""
+    }
   }
-  console.log(query);
   var lista=[]
-  const resultPromise = session.run(query).subscribe({
+  const consultaRecomendados = driver.session();
+  consultaRecomendados.run(query).subscribe({
     onNext: function(result) {
         lista.push(result.get(0));
         lista.push(result.get(1));
@@ -109,7 +257,7 @@ app.get("/recommended", function(req, res) {
     },
     onCompleted: function() {
       res.send(lista);
-      //session.close();
+      consultaRecomendados.close();
     },
     onError: function(error) {
       console.log(error);

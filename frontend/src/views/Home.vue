@@ -90,21 +90,28 @@
         <br />
 
         <!-- Botón para escoger tipo de jugador -->
-        <v-row align="center" style="float:left; width:50%; padding-right:40px">
+        <v-row align="center" style="float:left; width:40%; padding-right:40px">
           <v-col cols="12">
-            <v-select v-model="estilo" :items="items" :menu-props="{ top: true, offsetY: true }" label="Escoge uno de las siguientes opciones"></v-select>
+            <v-select v-model="estilo" :items="items" :menu-props="{ top: true, offsetY: true }" label="Escoge uno de las siguientes estilos"></v-select>
           </v-col>
         </v-row>
 
         <!-- Botón para escoger el numero de jugadores a mostrar -->
-        <v-row align="center" style="float:left; width:50%">
+        <v-row align="center" style="float:left; width:33%; padding-right:40px">
           <v-col cols="12">
-            <v-select v-model="numJugadores" :items="top" :menu-props="{ top: true, offsetY: true }" label="Escoge el número de jugadores a mostrar"></v-select>
+            <v-select v-model="numJugadores" :items="top" :menu-props="{ top: true, offsetY: true }" label="Escoge el número de jugadores"></v-select>
+          </v-col>
+        </v-row>
+
+        <!-- Botón para escoger la posicion del jugador -->
+        <v-row align="center" style="float:left; width:30%">
+          <v-col cols="12">
+            <v-select v-model="posicion" :items="posiciones" :menu-props="{ top: true, offsetY: true }" label="Escoge la posición del jugador"></v-select>
           </v-col>
         </v-row>
 
         <!-- Boton para comenzar la búsqueda -->
-        <v-row align="center" style="float:left; width: 50%">
+        <v-row align="center" style="float:left">
           <v-col cols="12">
             <v-btn v-on:click= "recomendarJugadores()" rounded color="primary" dark >RECOMENDAR JUGADORES</v-btn>
           </v-col>
@@ -194,17 +201,17 @@ export default {
       ft: undefined,
       threep: undefined,
     },
-    items: ['Defensive rebounder', 'Playmaker', 'Offensive rebounder', '3-And-D', 'Defensive Player'],
+    items: ['Defensive rebounder', 'Playmaker', 'Offensive rebounder', '3&D', 'Defensive Player', 'All-around player'],
     top: ['Top 3', 'Top 10', 'Top 15', 'Top 25'],
     estilo:"",
     numJugadores: 0,
+    posicion:'',
     rules: undefined,
     icon: undefined
   }),
   methods:{
         buscarJugadores(){
             //Comprobamos que haya introducido algun valor en todos los parámetros de búsqueda
-            console.log("Pulsamos el boton de buscar jugadores");
             if(this.jugador.posicion == ''){
                 //Mensaje de error
                 Swal.fire({
@@ -230,12 +237,11 @@ export default {
         },
         recomendarJugadores(){
             //Comprobamos que haya introducido algun valor en todos los parámetros de búsqueda
-            console.log("Pulsamos el boton de recomendar jugadores");
-            if(this.estilo == '' || this.numJugadores == 0){
+            if(this.estilo == '' || this.numJugadores == 0 || this.posicion==''){
                 //Mensaje de error
                 Swal.fire({
                   title: '  ¡BÚSQUEDA INCOMPLETA!',
-                  text: 'Debes introducir el estilo del jugador y el top que quieres buscar',
+                  text: 'Debes introducir el estilo del jugador, numero de jugadores y posición a buscar',
                   icon: 'error',
                   confirmButtonText: 'Aceptar'
                 })
@@ -253,7 +259,7 @@ export default {
 
                 this.$store.state.numJugadores = this.numJugadores
                 this.$store.state.estilo = this.estilo
-                console.log(this.$store.state.numJugadores)
+                this.$store.state.posicion= this.posicion
                 //Redireccionamos a styles, allí se hará la consulta
                 this.$router.push('/Styles');
             }

@@ -24,7 +24,13 @@ export default new Vuex.Store({
       threep: undefined,
     },
     numJugadores: undefined,
-    estilo: ''
+    estilo: '',
+    avg3p: '',
+    avgRobos: '',
+    avgRebotesDef: '',
+    avgAsistencias:'',
+    avgTapones:'',
+    avgRebotes:'',
   },
   mutations: {
   },
