@@ -25,13 +25,14 @@ CREATE (p)-[:BELONGS]->(t)
 
 -> Cuando hayamos hecho este paso ya dispondremos de la base de datos íntegra para poder ejecutar el programa
 
-INSTRUCCIONES BACKEND:
-
-Una vez hayamos descargado el proyecto, debemos abrir la carpeta del proyecto (NBAnalyzer) y ejecutar el siguente comando desde la terminal en el directorio para que instale todas las tecnologías necesarias par el funcionamiento de este proyecto:
+# ANTES DE ARRANCAR FRONTEND Y BACKEND DEBERÁ DIRIGIRSE AL DIRECTORIO DE NBAnalyzer Y EN LA TERMINAL EJECUTAR EL SIGUIENTE COMANDO:
 
 ```
 npm install
 ```
+
+
+# INSTRUCCIONES BACKEND:
 
 Una vez tengamos esto, procederemos a abrir la carpeta del backend, donde debemos ejecutar el siguiente comando para arrancar el proyecto:
 
@@ -46,5 +47,13 @@ nodemon app.js
 Una vez tengamos el backend arrancado, procederemos a arrancar el frontend.
 
 
-INSTRUCCIONES FRONTEND:
+# INSTRUCCIONES FRONTEND:
+
+Primero debemos arrancar una terminal y dirigirnos al directorio NBAnalyzer/frontend. Una vez estemos ahí, para arrancar la aplicación simplemente se deberá ejecutar el siguiente comando:
+
+```
+npm run electron:serve
+```
+
+Deberá esperar a que arranque la aplicación unos segundos, y una vez que acabe su construcción arrancará de forma automática.
 
