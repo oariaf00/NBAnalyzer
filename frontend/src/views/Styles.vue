@@ -237,79 +237,79 @@ export default {
             //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
             this.avg3p = response.data[0];
             this.$store.state.avg3p = this.avg3p
-          }).catch((e) => {
-                console.log(e.message);
-          });
 
-          //Cogemos la media de robos de jugadores de la base de datos
-          axios.get('http://localhost:3000/avgRobos').then(response=>{
-            //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
-            this.avgRobos = response.data[0];
-            this.$store.state.avgRobos = this.avgRobos
-          }).catch((e) => {
-                console.log(e.message);
-          });
+             //Cogemos la media de robos de jugadores de la base de datos
+            axios.get('http://localhost:3000/avgRobos').then(response=>{
+              //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
+              this.avgRobos = response.data[0];
+              this.$store.state.avgRobos = this.avgRobos
 
-          //Cogemos la media de rebotes defensivos de la base de datos
-          axios.get('http://localhost:3000/avgRebotesDef').then(response=>{
-            //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
-            this.avgRebotesDef = response.data[0];
-            this.$store.state.avgRebotesDef = this.avgRebotesDef
-          }).catch((e) => {
-                console.log(e.message);
-          });
+              //Cogemos la media de rebotes defensivos de la base de datos
+              axios.get('http://localhost:3000/avgRebotesDef').then(response=>{
+                //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
+                this.avgRebotesDef = response.data[0];
+                this.$store.state.avgRebotesDef = this.avgRebotesDef
 
-          //Para considerar a un jugador playmaker debe superar la media de puntos de un base y escolta, luego
-          //los ordenaremos por asistencias
-          axios.get('http://localhost:3000/recommended',{
-              params:{
-                numJugadores: this.$store.state.numJugadores,
-                estilo: this.$store.state.estilo,
-                posicion: this.$store.state.posicion,
-                avg3p: this.$store.state.avg3p,
-                avgRobos: this.$store.state.avgRobos,
-                avgRebotesDef: this.$store.state.avgRebotesDef
-              }
-          }).then(response=>{
-            if(response.data==''){
-                    //Mensaje de error
-                    Swal.fire({
-                      title: '¡BÚSQUEDA SIN RESULTADOS!',
-                      text: 'No hay jugadores que se ajusten a los parámetros introducidos.',
-                      confirmButtonText: 'Aceptar',
-                    }).then((result) => {
-                      /* Read more about isConfirmed, isDenied below */
-                      if (result.isConfirmed) {
-                        this.$router.push("/")
-                      }
-                    })
-                  }
-              //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
-              //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
-              
-              for (var step = 0; step < response.data.length; step+=16) {
-                this.jugadores.push({ 
-                  "nombre": response.data[step],
-                  "edad": response.data[step+1],
-                  "posicion": response.data[step+2],
-                  "equipo":response.data[step+3],
-                  "salario":response.data[step+4],
-                  "puntos":response.data[step+5],
-                  "rebotes":response.data[step+6],
-                  "rebotesOfensivos":response.data[step+7],
-                  "rebotesDefensivos":response.data[step+8],
-                  "robos":response.data[step+9],
-                  "perdidas":response.data[step+10],
-                  "asistencias":response.data[step+11],
-                  "fg":response.data[step+12],
-                  "ft":response.data[step+13],
-                  "threep":response.data[step+14],
-                  "faltas": response.data[step+15]
-                });
-              }
-            }).catch((e) => {
+                 //Para considerar a un jugador playmaker debe superar la media de puntos de un base y escolta, luego
+                //los ordenaremos por asistencias
+                axios.get('http://localhost:3000/recommended',{
+                    params:{
+                      numJugadores: this.$store.state.numJugadores,
+                      estilo: this.$store.state.estilo,
+                      posicion: this.$store.state.posicion,
+                      avg3p: this.$store.state.avg3p,
+                      avgRobos: this.$store.state.avgRobos,
+                      avgRebotesDef: this.$store.state.avgRebotesDef
+                    }
+                    }).then(response=>{
+                      if(response.data==''){
+                              //Mensaje de error
+                              Swal.fire({
+                                title: '¡BÚSQUEDA SIN RESULTADOS!',
+                                text: 'No hay jugadores que se ajusten a los parámetros introducidos.',
+                                confirmButtonText: 'Aceptar',
+                              }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                  this.$router.push("/")
+                                }
+                              })
+                            }
+                    //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
+                    //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
+                    
+                    for (var step = 0; step < response.data.length; step+=16) {
+                      this.jugadores.push({ 
+                        "nombre": response.data[step],
+                        "edad": response.data[step+1],
+                        "posicion": response.data[step+2],
+                        "equipo":response.data[step+3],
+                        "salario":response.data[step+4],
+                        "puntos":response.data[step+5],
+                        "rebotes":response.data[step+6],
+                        "rebotesOfensivos":response.data[step+7],
+                        "rebotesDefensivos":response.data[step+8],
+                        "robos":response.data[step+9],
+                        "perdidas":response.data[step+10],
+                        "asistencias":response.data[step+11],
+                        "fg":response.data[step+12],
+                        "ft":response.data[step+13],
+                        "threep":response.data[step+14],
+                        "faltas": response.data[step+15]
+                      });
+                    }
+              }).catch((e) => {
                     console.log(e.message);
+              });
+            }).catch((e) => {
+                  console.log(e.message);
             });
+          }).catch((e) => {
+                console.log(e.message);
+          });
+        }).catch((e) => {
+                console.log(e.message);
+        });
       }
       else if(this.$store.state.estilo=='Playmaker'){
         //Cogemos la media de asistencias de un base/escolta de la base de datos
@@ -317,31 +317,25 @@ export default {
             //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
             this.avgAsistencias = response.data[0];
             this.$store.state.avgAsistencias = this.avgAsistencias
-          }).catch((e) => {
-                console.log(e.message);
-          });
 
-          //Cogemos la media de asistencias de un base/escolta de la base de datos
-          axios.get('http://localhost:3000/avgPuntos').then(response=>{
-            //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
-            this.avgPuntos = response.data[0];
-            this.$store.state.avgPuntos = this.avgPuntos
-          }).catch((e) => {
-                console.log(e.message);
-          });
+             //Cogemos la media de asistencias de un base/escolta de la base de datos
+            axios.get('http://localhost:3000/avgPuntos').then(response=>{
+                //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
+                this.avgPuntos = response.data[0];
+                this.$store.state.avgPuntos = this.avgPuntos
 
-          //Para considerar a un jugador un 3&D vamos a buscar todos los jugadores que superen la media en estos
-          //3 parámetros que hemos buscado anteriormente
-          axios.get('http://localhost:3000/recommended',{
-              params:{
-                numJugadores: this.$store.state.numJugadores,
-                estilo: this.$store.state.estilo,
-                posicion: this.$store.state.posicion,
-                avgPuntos: this.$store.state.avgPuntos,
-                avgAsistencias: this.$store.state.avgAsistencias,
-              }
-          }).then(response=>{
-            if(response.data==''){
+                //Para considerar a un jugador un 3&D vamos a buscar todos los jugadores que superen la media en estos
+                //3 parámetros que hemos buscado anteriormente
+                axios.get('http://localhost:3000/recommended',{
+                  params:{
+                    numJugadores: this.$store.state.numJugadores,
+                    estilo: this.$store.state.estilo,
+                    posicion: this.$store.state.posicion,
+                    avgPuntos: this.$store.state.avgPuntos,
+                    avgAsistencias: this.$store.state.avgAsistencias,
+                  }
+                }).then(response=>{
+                  if(response.data==''){
                     //Mensaje de error
                     Swal.fire({
                       title: '¡BÚSQUEDA SIN RESULTADOS!',
@@ -349,37 +343,43 @@ export default {
                       confirmButtonText: 'Aceptar',
                     }).then((result) => {
                       /* Read more about isConfirmed, isDenied below */
-                      if (result.isConfirmed) {
-                        this.$router.push("/")
-                      }
-                    })
+                        if (result.isConfirmed) {
+                          this.$router.push("/")
+                        }
+                      })
+                    }
+                  //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
+                  //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
+                  
+                  for (var step = 0; step < response.data.length; step+=16) {
+                    this.jugadores.push({ 
+                      "nombre": response.data[step],
+                      "edad": response.data[step+1],
+                      "posicion": response.data[step+2],
+                      "equipo":response.data[step+3],
+                      "salario":response.data[step+4],
+                      "puntos":response.data[step+5],
+                      "rebotes":response.data[step+6],
+                      "rebotesOfensivos":response.data[step+7],
+                      "rebotesDefensivos":response.data[step+8],
+                      "robos":response.data[step+9],
+                      "perdidas":response.data[step+10],
+                      "asistencias":response.data[step+11],
+                      "fg":response.data[step+12],
+                      "ft":response.data[step+13],
+                      "threep":response.data[step+14],
+                      "faltas": response.data[step+15]
+                    });
                   }
-              //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
-              //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
-              
-              for (var step = 0; step < response.data.length; step+=16) {
-                this.jugadores.push({ 
-                  "nombre": response.data[step],
-                  "edad": response.data[step+1],
-                  "posicion": response.data[step+2],
-                  "equipo":response.data[step+3],
-                  "salario":response.data[step+4],
-                  "puntos":response.data[step+5],
-                  "rebotes":response.data[step+6],
-                  "rebotesOfensivos":response.data[step+7],
-                  "rebotesDefensivos":response.data[step+8],
-                  "robos":response.data[step+9],
-                  "perdidas":response.data[step+10],
-                  "asistencias":response.data[step+11],
-                  "fg":response.data[step+12],
-                  "ft":response.data[step+13],
-                  "threep":response.data[step+14],
-                  "faltas": response.data[step+15]
-                });
-              }
-            }).catch((e) => {
-                    console.log(e.message);
-            });
+          }).catch((e) => {
+                console.log(e.message);
+          });
+        }).catch((e) => {
+              console.log(e.message);
+        });
+      }).catch((e) => {
+              console.log(e.message);
+      });
 
       }else if(this.$store.state.estilo=='Offensive rebounder'){
           //Vamos a buscar a todos los jugadores y ordenarlos por sus estadísticas de rebotes ofensivos
@@ -486,29 +486,20 @@ export default {
             //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
             this.avgRobos = response.data[0];
             this.$store.state.avgRobos = this.avgRobos
-          }).catch((e) => {
-                console.log(e.message);
-          });
 
-          //Cogemos la media de rebotes defensivos de la base de datos
-          axios.get('http://localhost:3000/avgRebotesDef').then(response=>{
-            //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
-            this.avgRebotesDef = response.data[0];
-            this.$store.state.avgRebotesDef = this.avgRebotesDef
-          }).catch((e) => {
-                console.log(e.message);
-          });
+              //Cogemos la media de rebotes defensivos de la base de datos
+            axios.get('http://localhost:3000/avgRebotesDef').then(response=>{
+              //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
+              this.avgRebotesDef = response.data[0];
+              this.$store.state.avgRebotesDef = this.avgRebotesDef
 
-          //Cogemos la media de tapones de la base de datos
-          axios.get('http://localhost:3000/avgTapones').then(response=>{
-            //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
-            this.avgTapones = response.data[0];
-            this.$store.state.avgTapones = this.avgTapones
-          }).catch((e) => {
-                console.log(e.message);
-          });
+              //Cogemos la media de tapones de la base de datos
+              axios.get('http://localhost:3000/avgTapones').then(response=>{
+                //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
+                this.avgTapones = response.data[0];
+                this.$store.state.avgTapones = this.avgTapones
 
-          //Para considerar a un jugador playmaker debe superar la media de puntos de un base y escolta, luego
+                //Para considerar a un jugador playmaker debe superar la media de puntos de un base y escolta, luego
           //los ordenaremos por asistencias
           axios.get('http://localhost:3000/recommended',{
               params:{
@@ -557,9 +548,18 @@ export default {
                   "faltas": response.data[step+15]
                 });
               }
-            }).catch((e) => {
+              }).catch((e) => {
                     console.log(e.message);
+              });
+            }).catch((e) => {
+                  console.log(e.message);
             });
+          }).catch((e) => {
+                console.log(e.message);
+          });
+        }).catch((e) => {
+                console.log(e.message);
+        });
       } else if(this.$store.state.estilo=='All-around player'){
             //Si es un base o escolta buscamos que tenga un número de rebotes y tapones mayor a la media de un alero, ala-pivot o pivot
             if(this.$store.state.posicion=='PG' || this.$store.state.posicion=='SG'){
@@ -622,22 +622,27 @@ export default {
                 });
           }
 
+          /*******************************************************************************************************************/
+
           //Si es un alero, ala-pivot o pivot buscamos que tenga un número de asistencias mayor a la media de un base o escolta
           else if(this.$store.state.posicion=='SF' || this.$store.state.posicion=='PF' || this.$store.state.posicion=='C'){
             axios.get('http://localhost:3000/avgAsistencias').then(response=>{
               //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
               this.avgAsistencias = response.data[0];
               this.$store.state.avgAsistencias = this.avgAsistencias
-            }).catch((e) => {
-                  console.log(e.message);
-            });
 
-             axios.get('http://localhost:3000/recommended',{
+              axios.get('http://localhost:3000/avgPuntos').then(response=>{
+              //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
+              this.avgPuntos = response.data[0];
+              this.$store.state.avgPuntos = this.avgPuntos
+
+              axios.get('http://localhost:3000/recommended',{
               params:{
                 numJugadores: this.$store.state.numJugadores,
                 estilo: this.$store.state.estilo,
                 posicion: this.$store.state.posicion,
                 avgAsistencias: this.$store.state.avgAsistencias,
+                avgPuntos: this.$store.state.avgPuntos
               }
           }).then(response=>{
             if(response.data==''){
@@ -654,32 +659,38 @@ export default {
                     })
                   }
                   
-              //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
-              //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
-              
-              for (var step = 0; step < response.data.length; step+=16) {
-                this.jugadores.push({ 
-                  "nombre": response.data[step],
-                  "edad": response.data[step+1],
-                  "posicion": response.data[step+2],
-                  "equipo":response.data[step+3],
-                  "salario":response.data[step+4],
-                  "puntos":response.data[step+5],
-                  "rebotes":response.data[step+6],
-                  "rebotesOfensivos":response.data[step+7],
-                  "rebotesDefensivos":response.data[step+8],
-                  "robos":response.data[step+9],
-                  "perdidas":response.data[step+10],
-                  "asistencias":response.data[step+11],
-                  "fg":response.data[step+12],
-                  "ft":response.data[step+13],
-                  "threep":response.data[step+14],
-                  "faltas": response.data[step+15]
-                });
-              }
-            }).catch((e) => {
+                //AQUI RELLENAMOS EL ARRAY DE JUGADORES PARA QUE LOS MUESTRE EN LA TABLA
+                //Cada jugador va a venir acompañado de 16 valores, con lo cual cada 16 i cambiamos de jugador
+                
+                for (var step = 0; step < response.data.length; step+=16) {
+                  this.jugadores.push({ 
+                    "nombre": response.data[step],
+                    "edad": response.data[step+1],
+                    "posicion": response.data[step+2],
+                    "equipo":response.data[step+3],
+                    "salario":response.data[step+4],
+                    "puntos":response.data[step+5],
+                    "rebotes":response.data[step+6],
+                    "rebotesOfensivos":response.data[step+7],
+                    "rebotesDefensivos":response.data[step+8],
+                    "robos":response.data[step+9],
+                    "perdidas":response.data[step+10],
+                    "asistencias":response.data[step+11],
+                    "fg":response.data[step+12],
+                    "ft":response.data[step+13],
+                    "threep":response.data[step+14],
+                    "faltas": response.data[step+15]
+                  });
+                }
+              }).catch((e) => {
                     console.log(e.message);
+              });
+            }).catch((e) => {
+                  console.log(e.message);
             });
+          }).catch((e) => {
+                  console.log(e.message);
+          });
           }
       }
     },

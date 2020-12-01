@@ -145,19 +145,21 @@
                   >AYUDA
                 </v-btn>
               </template>
-              <v-sheet class="text-center" height="200px">
+              <v-sheet class="text-center" height="270px">
                 <v-btn class="mt-6" text color="error" @click="sheet = !sheet">
                   Cerrar ventana
                 </v-btn>
-                <div class="my-3">
+                <div class="text-left">
                   Para comenzar a usar esta aplicación, tan solo tendrá que
                   introducir los parámetros sobre el jugador que está buscando
                   para que el programa comience a contrastar con la base de
                   datos para darle las mejores opciones que haya en el mercado
-                  de jugadores de la NBA.<br>
+                  de jugadores de la NBA. El único requisito obligatorio para comenzar una 
+                  búsqueda es que se introduzca una posición.<br>
                   En la parte inferior disponemos de un sistema de búsqueda de jugadores
                   en función de su estilo de juego, para los que no tienen un perfil claro
-                  de jugador a buscar
+                  de jugador a buscar. Deberá introducir de forma obligatoria todos los parámetros 
+                  para comenzar la búsqueda.
                 </div>
               </v-sheet>
             </v-bottom-sheet>
