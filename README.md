@@ -3,8 +3,8 @@ Sistema de recomendación desarrollado para la asignatura de Sistemas de Informa
 
 # INSTRUCCIONES PARA ARRANCAR LA APLICACIÓN
 Primero, deberá tener instalado en su equipo el software Neo4j Desktop para la carga de la base de datos, y la tecnología NODE JS para arrancar la parte del "Backend".
-INSTRUCCIONES BBDD:
 
+# INSTRUCCIONES CREACIÓN DE BASE DE DATOS:
 -> Abrir el software Neo4j Desktop, una vez dentro crear un proyecto nuevo.
 
 -> Crear una base de datos local en ese proyecto llamada NBAnalyzer, y con contraseña nbanalyzer
