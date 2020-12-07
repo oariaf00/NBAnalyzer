@@ -16,7 +16,7 @@ app.get("/lookPlayers", function(req, res) {
   //AQUI HACEMOS LA CONSULTA A LA BASE DE DATOS
   query = "MATCH (p:Player) WHERE p.posicion='"+req.query.posicion+"'"
   if(req.query.edad!=undefined){
-    query+=" AND p.posicion='"+req.query.posicion+"'"
+    query+=" AND p.edad<='"+req.query.edad+"'"
   }
   if(req.query.fg!=undefined){
     query+= " AND p.fg>"+req.query.fg+""
@@ -266,5 +266,5 @@ app.get("/recommended", function(req, res) {
 });
 
 app.listen(port, function() {
-  console.log("NBAnalyzer funcionando en el puerto: " + 3000);
+  console.log("NBAnalyzer funcionando");
 });
