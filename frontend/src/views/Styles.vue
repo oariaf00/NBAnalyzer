@@ -568,11 +568,8 @@ export default {
                   //Introducimos dicho valor en la variable correspondiente para luego hacer la consulta
                   this.avgRebotes = response.data[0];
                   this.$store.state.avgRebotes = this.avgRebotes
-              }).catch((e) => {
-                    console.log(e.message);
-              });
 
-               axios.get('http://localhost:3000/recommended',{
+                  axios.get('http://localhost:3000/recommended',{
                   params:{
                     numJugadores: this.$store.state.numJugadores,
                     estilo: this.$store.state.estilo,
@@ -617,9 +614,12 @@ export default {
                       "faltas": response.data[step+15]
                     });
                   }
-                }).catch((e) => {
-                        console.log(e.message);
-                });
+              }).catch((e) => {
+                    console.log(e.message);
+              });
+            }).catch((e) => {
+                    console.log(e.message);
+            });
           }
 
           /*******************************************************************************************************************/
